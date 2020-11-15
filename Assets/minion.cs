@@ -32,11 +32,12 @@ public class minion : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         elligibleEnemies = new List<GameObject>();
         detectCollider.radius = (detectionRadius * 3 / 70)/2;
+        gameObject.GetComponent<MeshRenderer>().material.color = blueTeam ? Color.blue : Color.red;
     }
 
     public void TryAddElligibleEnemy(GameObject enemyObj)
 	{
-        if (blueTeam && (enemyObj.tag.Equals("Enemy") || (enemyObj.tag.Equals("Player") && attackPlayer)))
+        if (blueTeam && (enemyObj.tag.Equals("Enemy")))
         {
             elligibleEnemies.Add(enemyObj);
             Debug.Log("Added object: " + enemyObj.name);
@@ -50,7 +51,7 @@ public class minion : MonoBehaviour
 
     public void TryRemoveElligibleEnemy(GameObject enemyObj)
     {
-        if (blueTeam && (enemyObj.tag.Equals("Enemy") || (enemyObj.tag.Equals("Player") && attackPlayer)))
+        if (blueTeam && (enemyObj.tag.Equals("Enemy")))
         {
             elligibleEnemies.Remove(enemyObj);
 			if (elligibleEnemies.Count == 0)
