@@ -33,17 +33,18 @@ public class projectile : MonoBehaviour
             transform.Translate(0, 0, speed * Time.deltaTime);
 			if (!target)
 			{
-                if(Mathf.Abs(Vector3.Distance(transform.position, deathTarget)) <= 1.1f)
+                if(Mathf.Abs(Vector3.Distance(transform.position, deathTarget)) <= 0.1f)
 				{
                     dying = true;
-				}
+                    gameObject.GetComponent<MeshRenderer>().enabled = false;
+                }
 			}
         }
 		else
 		{
             if (deathCooldown <= 0)
             {
-                Destroy(this);
+                Destroy(this.gameObject);
             }
             else
             {
