@@ -22,8 +22,22 @@ public class projectile : MonoBehaviour
     {
         if (!dying)
         {
-            transform.LookAt(target.transform);
+            if (target)
+            {
+                transform.LookAt(target.transform);
+            }
+			else
+			{
+                transform.LookAt(deathTarget.transform);
+            }
             transform.Translate(0, 0, speed * Time.deltaTime);
+			if (!target)
+			{
+                if(Mathf.Abs(Vector3.Distance(transform.position, deathTarget.position)) <= 0.1f)
+				{
+                    dying = true;
+				}
+			}
         }
 		else
 		{
