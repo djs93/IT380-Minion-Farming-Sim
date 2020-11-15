@@ -44,6 +44,7 @@ public class minion : MonoBehaviour
         elligibleEnemies = new List<GameObject>();
         detectCollider.radius = (detectionRadius * 3 / 70)/2;
         gameObject.GetComponent<MeshRenderer>().material.color = blueTeam ? Color.blue : Color.red;
+        executeThreshold.gameObject.SetActive(!blueTeam);
         currentHealth = health;
         RecalculateHealhbar();
     }
@@ -190,13 +191,16 @@ public class minion : MonoBehaviour
 
         float thresholdPosition = (userPlayer.damage*(100/(100+armor))/health)*960;
         executeThreshold.anchoredPosition = new Vector2(thresholdPosition, executeThreshold.anchoredPosition.y);
-        if(userPlayer.damage * (100 / (100 + armor)) >= currentHealth)
-		{
-            executeThreshold.transform.GetComponentInParent<Image>().color = Color.green;
-		}
-		else
+        if (executeThreshold.gameObject.activeSelf)
         {
-            executeThreshold.transform.GetComponentInParent<Image>().color = Color.white;
+            if (userPlayer.damage * (100 / (100 + armor)) >= currentHealth)
+            {
+                executeThreshold.transform.GetComponentInParent<Image>().color = Color.green;
+            }
+            else
+            {
+                executeThreshold.transform.GetComponentInParent<Image>().color = Color.white;
+            }
         }
 	}
 
