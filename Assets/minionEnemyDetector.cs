@@ -8,7 +8,7 @@ public class minionEnemyDetector : MonoBehaviour
 	// Start is called before the first frame update
 	private void OnTriggerEnter(Collider other)
 	{
-		Debug.Log("HI");
+		//Debug.Log("HI");
 		parent.TryAddElligibleEnemy(other.gameObject);
 	}
 

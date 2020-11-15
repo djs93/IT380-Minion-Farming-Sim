@@ -128,7 +128,10 @@ public class player : MonoBehaviour
             if (ranged)
             {
                 GameObject proj = Instantiate(projectilePrefab, transform.position, transform.rotation);
-                proj.GetComponent<projectile>().target = target;
+                projectile projProjectile = proj.GetComponent<projectile>();
+                projProjectile.target = target;
+                projProjectile.fromPlayer = true;
+                projProjectile.damage = damage;
             }
 			else
 			{

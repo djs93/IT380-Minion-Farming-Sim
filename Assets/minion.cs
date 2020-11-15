@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 
 public class minion : MonoBehaviour
 {
     private GameObject attackTarget;
     public float health;
+    private float currentHealth;
     public float armor;
     public float attackSpeed;
     private float attackCooldown;
@@ -25,14 +27,20 @@ public class minion : MonoBehaviour
     public float detectionRadius; //in league units, multiply by 3/70 to get Unity units
     private List<GameObject> elligibleEnemies;
     public bool blueTeam;
+    public player userPlayer;
+    public Slider slider;
+    public RectTransform executeThreshold;
     // Start is called before the first frame update
     void Start()
     {
+        slider.maxValue = health;
         target = transform.position;
         agent = GetComponent<NavMeshAgent>();
         elligibleEnemies = new List<GameObject>();
         detectCollider.radius = (detectionRadius * 3 / 70)/2;
         gameObject.GetComponent<MeshRenderer>().material.color = blueTeam ? Color.blue : Color.red;
+        currentHealth = health;
+        RecalculateHealhbar();
     }
 
     public void TryAddElligibleEnemy(GameObject enemyObj)
@@ -196,4 +204,27 @@ public class minion : MonoBehaviour
             attackCooldown = 1 / attackSpeed;
         }
     }
+
+    void RecalculateHealhbar()
+	{
+        slider.value = currentHealth;
+
+        float thresholdPosition = (userPlayer.damage*(100/(100+armor))/health)*960;
+        executeThreshold.anchoredPosition = new Vector2(thresholdPosition, executeThreshold.anchoredPosition.y);
+        if(userPlayer.damage * (100 / (100 + armor)) >= currentHealth)
+		{
+            executeThreshold.transform.GetComponentInParent<Image>().color = Color.green;
+		}
+		else
+        {
+            executeThreshold.transform.GetComponentInParent<Image>().color = Color.white;
+        }
+	}
+
+    public void TakeDamage(float rawDamage, bool playerDamage)
+	{
+        float realDamage = rawDamage * (100 / (100 + armor));
+        currentHealth -= realDamage;
+        RecalculateHealhbar();
+	}
 }

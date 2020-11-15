@@ -7,16 +7,53 @@ public class projectile : MonoBehaviour
     public GameObject target;
     public float speed = 20;
     public float damage;
+    public bool fromPlayer;
+    private bool dying = false; //we have to wait for the trail to die, or else it looks weird
+    private float deathCooldown = 0.2f;
+    public Transform deathTarget;
     // Start is called before the first frame update
     void Start()
     {
-        
+        deathTarget = target.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(target.transform);
-        transform.Translate(0, 0, speed*Time.deltaTime);
+        if (!dying)
+        {
+            transform.LookAt(target.transform);
+            transform.Translate(0, 0, speed * Time.deltaTime);
+        }
+		else
+		{
+            if (deathCooldown <= 0)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                deathCooldown -= Time.deltaTime;
+            }
+		}
     }
+
+	public void OnTriggerEnter(Collider other)
+	{
+        if (!other.gameObject.tag.Equals("Player"))
+        {
+            Debug.Log("HI");
+        }
+		if(other.gameObject == target)
+		{
+            //deal damage!
+            minion targetMinion = target.GetComponent<minion>();
+			if (targetMinion)
+			{
+                targetMinion.TakeDamage(damage, fromPlayer);
+			}
+            dying = true;
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+		}
+	}
 }
