@@ -9,7 +9,7 @@ public class minion : MonoBehaviour
     private GameObject attackTarget;
     public float damage;
     public float health;
-    private float currentHealth;
+    public float currentHealth;
     public float armor;
     public float attackSpeed;
     private float attackCooldown;
@@ -99,9 +99,20 @@ public class minion : MonoBehaviour
                 attackCooldown = 0;
             }
 
+			if (attackTarget && !attackTarget.activeSelf)
+			{
+                attackTarget = null;
+			}
+
             if (attackTarget == null && elligibleEnemies.Count > 0) //if no target, look for one
             {
-                attackTarget = elligibleEnemies[0];
+				for (int i = 0; i < elligibleEnemies.Count; i++)
+                {
+					if (elligibleEnemies[i] && elligibleEnemies[i].activeSelf)
+                    {
+                        attackTarget = elligibleEnemies[i];
+                    }
+                }
                 //Debug.Log("Set attack target to "+attackTarget.name);
             }
 
