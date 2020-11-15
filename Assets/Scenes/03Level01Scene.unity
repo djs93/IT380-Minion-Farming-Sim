@@ -13750,7 +13750,7 @@ GameObject:
   - component: {fileID: 2003420170}
   - component: {fileID: 2003420172}
   - component: {fileID: 2003420171}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RangeIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14414,7 +14414,7 @@ GameObject:
   - component: {fileID: 2068883373}
   - component: {fileID: 2068883374}
   - component: {fileID: 2068883375}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -15186,7 +15186,7 @@ GameObject:
   - component: {fileID: 2113483782}
   - component: {fileID: 2113483784}
   - component: {fileID: 2113483783}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
