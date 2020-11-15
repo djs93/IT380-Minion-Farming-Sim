@@ -136,6 +136,12 @@ public class player : MonoBehaviour
 			else
 			{
                 meleeParticles.Play();
+                //deal damage!
+                minion targetMinion = target.GetComponent<minion>();
+                if (targetMinion)
+                {
+                    targetMinion.TakeDamage(damage, true);
+                }
             }
             attackCooldown = 1 / atkSpeed;
         }

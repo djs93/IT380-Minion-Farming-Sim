@@ -25,6 +25,7 @@ public class projectile : MonoBehaviour
             if (target)
             {
                 transform.LookAt(target.transform);
+                deathTarget = target.transform.position;
             }
 			else
 			{

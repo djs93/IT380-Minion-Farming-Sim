@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class minion : MonoBehaviour
 {
     private GameObject attackTarget;
+    public float damage;
     public float health;
     private float currentHealth;
     public float armor;
@@ -164,11 +165,20 @@ public class minion : MonoBehaviour
             if (ranged)
             {
                 GameObject proj = Instantiate(projectilePrefab, transform.position, transform.rotation);
-                proj.GetComponent<projectile>().target = target;
+                projectile projProjectile = proj.GetComponent<projectile>();
+                projProjectile.target = target;
+                projProjectile.fromPlayer = false;
+                projProjectile.damage = damage;
             }
             else
             {
                 meleeParticles.Play();
+                //deal damage!
+                minion targetMinion = target.GetComponent<minion>();
+                if (targetMinion)
+                {
+                    targetMinion.TakeDamage(damage, false);
+                }
             }
             attackCooldown = 1 / attackSpeed;
         }
