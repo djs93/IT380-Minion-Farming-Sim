@@ -109,6 +109,7 @@ public class UIFunctions : MonoBehaviour
 				break;
 			case 7:
 				introText.horizontalAlignment = HorizontalAlignmentOptions.Center;
+				personaImage.SetActive(false);
 				titleText.text = "Stakeholders and Users";
 				introText.text = "League of Legends Players\n" +
 					"League of Legends Coaches";
