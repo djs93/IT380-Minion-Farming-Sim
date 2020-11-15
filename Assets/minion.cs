@@ -30,6 +30,10 @@ public class minion : MonoBehaviour
     public player userPlayer;
     public Slider slider;
     public RectTransform executeThreshold;
+    public ParticleSystem deathParticles;
+    public ParticleSystem goldParticles;
+    private bool deathAnimationPlayed;
+    public GameObject destructionObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -82,106 +86,71 @@ public class minion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (attackCooldown > 0)
+        if (currentHealth > 0)
         {
-            attackCooldown -= Time.deltaTime;
-        }
-        if (attackCooldown < 0)
-        {
-            attackCooldown = 0;
-        }
-
-        if (attackTarget == null && elligibleEnemies.Count > 0)
-        {
-            attackTarget = elligibleEnemies[0];
-            //Debug.Log("Set attack target to "+attackTarget.name);
-        }
-
-        if (attackTarget != null)
-        {
-            float distance = Vector3.Distance(new Vector3(transform.position.x, transform.position.z), new Vector3(attackTarget.transform.position.x, attackTarget.transform.position.z));
-            //Debug.Log("Distance: " + distance);
-            if (attackMoving)
+            if (attackCooldown > 0)
             {
-                if (distance <= range * 3 / 70)
+                attackCooldown -= Time.deltaTime;
+            }
+            if (attackCooldown < 0)
+            {
+                attackCooldown = 0;
+            }
+
+            if (attackTarget == null && elligibleEnemies.Count > 0) //if no target, look for one
+            {
+                attackTarget = elligibleEnemies[0];
+                //Debug.Log("Set attack target to "+attackTarget.name);
+            }
+
+            if (attackTarget != null) //if we have target, see if we can atk
+            {
+                float distance = Vector3.Distance(new Vector3(transform.position.x, transform.position.z), new Vector3(attackTarget.transform.position.x, attackTarget.transform.position.z));
+                //Debug.Log("Distance: " + distance);
+                if (attackMoving)
                 {
-                    //Debug.Log("Trying attack");
-                    agent.isStopped = true;
-                    attackMoving = false;
-                    TryAttack(attackTarget);
+                    if (distance <= range * 3 / 70)
+                    {
+                        //Debug.Log("Trying attack");
+                        agent.isStopped = true;
+                        attackMoving = false;
+                        TryAttack(attackTarget);
+                    }
+                    else
+                    {
+                        agent.SetDestination(attackTarget.transform.position);
+                    }
                 }
-				else
-				{
-                    agent.SetDestination(attackTarget.transform.position);
+                else //we have a target and weren't moving last frame
+                {
+                    if (distance > range * 3 / 70) //we need to see if it's moved out of range first
+                    {
+                        //Debug.Log("Moving closer to attack");
+                        agent.isStopped = false;
+                        attackMoving = true;
+                        agent.SetDestination(attackTarget.transform.position);
+                    }
+                    else
+                    {
+                        //Debug.Log("Attacking");
+                        TryAttack(attackTarget);
+                    }
                 }
             }
-            else //we have a target and weren't moving last frame
+            else //if no target, move towards goal
             {
-                if (distance > range * 3 / 70) //we need to see if it's moved out of range first
-                {
-                    //Debug.Log("Moving closer to attack");
-                    agent.isStopped = false;
-                    attackMoving = true;
-                    agent.SetDestination(attackTarget.transform.position);
-                }
-                else
-                {
-                    //Debug.Log("Attacking");
-                    TryAttack(attackTarget);
-                }
+                agent.isStopped = false;
+                attackMoving = false;
+                agent.SetDestination(goalTarget.transform.position);
             }
         }
 		else
 		{
-            agent.isStopped = false;
-            attackMoving = false;
-            agent.SetDestination(goalTarget.transform.position);
-        }
-
-
-        /**
-        if (Input.GetButtonDown("Fire2"))
-        {
-            RaycastHit hit;
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
+			if (!deathParticles.IsAlive(true)&& !goldParticles.IsAlive(true))
             {
-                //Debug.Log("Object hit: "+hit.collider.gameObject.tag);
-                if (hit.collider.gameObject.tag.Equals("Enemy"))//we just shot a minion with our ray
-                {
-                    if (hit.collider.gameObject != attackTarget)
-                    {
-                        target = hit.point;
-                        float distance = Vector3.Distance(new Vector3(transform.position.x, transform.position.z), new Vector3(hit.collider.gameObject.transform.position.x, hit.collider.gameObject.transform.position.z));
-                        if (distance > realRange)
-                        {
-                            //Debug.Log(distance);
-                            agent.SetDestination(target);
-                            attackTarget = hit.collider.gameObject;
-                            attackMoving = true;
-                            agent.isStopped = false;
-                        }
-                        else
-                        {
-                            attackTarget = hit.collider.gameObject;
-                            agent.isStopped = true;
-                        }
-                    }
-                    //agent.SetDestination(target);
-                }
-                else //we just shot the ground or ourself, just move
-                {
-                    target = hit.point;
-                    agent.SetDestination(target);
-                    attackMoving = false;
-                    agent.isStopped = false;
-                    attackTarget = null;
-                }
+                Die();
             }
-        }
-        **/
-        //if we have target, see if we can atk
-        //if no target, look for new one and move towards goal
+		}
     }
 
     void TryAttack(GameObject target)
@@ -226,5 +195,23 @@ public class minion : MonoBehaviour
         float realDamage = rawDamage * (100 / (100 + armor));
         currentHealth -= realDamage;
         RecalculateHealhbar();
+		if (currentHealth <= 0 && !deathAnimationPlayed)
+		{
+			if (playerDamage)
+			{
+                goldParticles.Play();
+			}
+			else
+            {
+                deathParticles.Play();
+            }
+            deathAnimationPlayed = true;
+		}
 	}
+
+    public void Die()
+	{
+        Destroy(destructionObject);
+        //ToDo: add other death things here
+    }
 }

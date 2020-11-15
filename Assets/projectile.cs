@@ -10,11 +10,11 @@ public class projectile : MonoBehaviour
     public bool fromPlayer;
     private bool dying = false; //we have to wait for the trail to die, or else it looks weird
     private float deathCooldown = 0.2f;
-    public Transform deathTarget;
+    public Vector3 deathTarget;
     // Start is called before the first frame update
     void Start()
     {
-        deathTarget = target.transform;
+        deathTarget = target.transform.position;
     }
 
     // Update is called once per frame
@@ -28,12 +28,12 @@ public class projectile : MonoBehaviour
             }
 			else
 			{
-                transform.LookAt(deathTarget.transform);
+                transform.LookAt(deathTarget);
             }
             transform.Translate(0, 0, speed * Time.deltaTime);
 			if (!target)
 			{
-                if(Mathf.Abs(Vector3.Distance(transform.position, deathTarget.position)) <= 0.1f)
+                if(Mathf.Abs(Vector3.Distance(transform.position, deathTarget)) <= 1.1f)
 				{
                     dying = true;
 				}
@@ -54,10 +54,6 @@ public class projectile : MonoBehaviour
 
 	public void OnTriggerEnter(Collider other)
 	{
-        if (!other.gameObject.tag.Equals("Player"))
-        {
-            Debug.Log("HI");
-        }
 		if(other.gameObject == target)
 		{
             //deal damage!
