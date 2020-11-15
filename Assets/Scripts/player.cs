@@ -18,6 +18,7 @@ public class player : MonoBehaviour
     public GameObject projectilePrefab;
     public ParticleSystem meleeParticles;
     public GameObject rangeIndicator;
+    public LayerMask rayMask;
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +59,7 @@ public class player : MonoBehaviour
         {
             RaycastHit hit;
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, 100000, rayMask))
             {
                 //Debug.Log("Object hit: "+hit.collider.gameObject.tag);
                 if(hit.collider.gameObject.tag.Equals("Enemy"))//we just shot a minion with our ray
@@ -83,7 +84,7 @@ public class player : MonoBehaviour
                     }
                     //agent.SetDestination(target);
                 }
-                else //we just shot the ground or ourself, just move
+                else //we just shot the ground, an ally minion, or ourself, just move
                 {
                     target = hit.point;
                     agent.SetDestination(target);
