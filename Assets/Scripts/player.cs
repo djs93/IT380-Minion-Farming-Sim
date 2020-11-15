@@ -76,7 +76,7 @@ public class player : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire2") || Input.GetButton("Fire2"))
         {
             RaycastHit hit;
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
