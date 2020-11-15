@@ -7,8 +7,8 @@ public class player : MonoBehaviour
 {
     private Vector3 target;
     private NavMeshAgent agent;
-    public float range; //in League units, divide by 7/3 to get Unity units
-    private float realRange; //in Unity units, multiply by 7/3 to get League units
+    public float range; //in League units, divide by 70/3 to get Unity units
+    private float realRange; //in Unity units, multiply by 70/3 to get League units
     public float damage;
     public float atkSpeed; //attacks per second
     private bool attackMoving; //are we pathing to hit an enemy?
@@ -17,13 +17,15 @@ public class player : MonoBehaviour
     public bool ranged;
     public GameObject projectilePrefab;
     public ParticleSystem meleeParticles;
+    public GameObject rangeIndicator;
 
     // Start is called before the first frame update
     void Start()
     {
         target = transform.position;
         agent = GetComponent<NavMeshAgent>();
-        realRange = range / 20;
+        realRange = range * 3/70;
+        rangeIndicator.transform.localScale = new Vector3(range * 3 / 70, rangeIndicator.transform.localScale.y, range * 3 / 70);
     }
 
     // Update is called once per frame
@@ -97,16 +99,20 @@ public class player : MonoBehaviour
 	{
 		if (attackCooldown <= 0)
 		{
-			if (ranged)
+            var lookPos = target.transform.position - transform.position;
+            lookPos.y = 0;
+            var rotation = Quaternion.LookRotation(lookPos);
+            transform.rotation = rotation;
+            if (ranged)
             {
                 GameObject proj = Instantiate(projectilePrefab, transform.position, transform.rotation);
                 proj.GetComponent<projectile>().target = target;
-                attackCooldown = 1 / atkSpeed;
             }
 			else
 			{
-
-			}
-		}
+                meleeParticles.Play();
+            }
+            attackCooldown = 1 / atkSpeed;
+        }
 	}
 }
