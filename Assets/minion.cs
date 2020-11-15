@@ -40,12 +40,12 @@ public class minion : MonoBehaviour
         if (blueTeam && (enemyObj.tag.Equals("Enemy")))
         {
             elligibleEnemies.Add(enemyObj);
-            Debug.Log("Added object: " + enemyObj.name);
+            //Debug.Log("Added object: " + enemyObj.name);
         }
         else if (!blueTeam && (enemyObj.tag.Equals("Ally") || (enemyObj.tag.Equals("Player") && attackPlayer)))
         {
             elligibleEnemies.Add(enemyObj);
-            Debug.Log("Added object: " + enemyObj.name);
+            //Debug.Log("Added object: " + enemyObj.name);
         }
     }
 
@@ -86,18 +86,18 @@ public class minion : MonoBehaviour
         if (attackTarget == null && elligibleEnemies.Count > 0)
         {
             attackTarget = elligibleEnemies[0];
-            Debug.Log("Set attack target to "+attackTarget.name);
+            //Debug.Log("Set attack target to "+attackTarget.name);
         }
 
         if (attackTarget != null)
         {
             float distance = Vector3.Distance(new Vector3(transform.position.x, transform.position.z), new Vector3(attackTarget.transform.position.x, attackTarget.transform.position.z));
-            Debug.Log("Distance: " + distance);
+            //Debug.Log("Distance: " + distance);
             if (attackMoving)
             {
                 if (distance <= range * 3 / 70)
                 {
-                    Debug.Log("Trying attack");
+                    //Debug.Log("Trying attack");
                     agent.isStopped = true;
                     attackMoving = false;
                     TryAttack(attackTarget);
@@ -111,14 +111,14 @@ public class minion : MonoBehaviour
             {
                 if (distance > range * 3 / 70) //we need to see if it's moved out of range first
                 {
-                    Debug.Log("Moving closer to attack");
+                    //Debug.Log("Moving closer to attack");
                     agent.isStopped = false;
                     attackMoving = true;
                     agent.SetDestination(attackTarget.transform.position);
                 }
                 else
                 {
-                    Debug.Log("Attacking");
+                    //Debug.Log("Attacking");
                     TryAttack(attackTarget);
                 }
             }
