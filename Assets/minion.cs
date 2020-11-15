@@ -30,8 +30,6 @@ public class minion : MonoBehaviour
     {
         target = transform.position;
         agent = GetComponent<NavMeshAgent>();
-        realRange = range * 3 / 70;
-        Debug.Log("Real Range: " + realRange);
         elligibleEnemies = new List<GameObject>();
         detectCollider.radius = (detectionRadius * 3 / 70)/2;
     }
@@ -96,7 +94,7 @@ public class minion : MonoBehaviour
             Debug.Log("Distance: " + distance);
             if (attackMoving)
             {
-                if (distance <= realRange)
+                if (distance <= range * 3 / 70)
                 {
                     Debug.Log("Trying attack");
                     agent.isStopped = true;
@@ -110,7 +108,7 @@ public class minion : MonoBehaviour
             }
             else //we have a target and weren't moving last frame
             {
-                if (distance > realRange) //we need to see if it's moved out of range first
+                if (distance > range * 3 / 70) //we need to see if it's moved out of range first
                 {
                     Debug.Log("Moving closer to attack");
                     agent.isStopped = false;

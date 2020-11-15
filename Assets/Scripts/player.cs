@@ -8,6 +8,7 @@ public class player : MonoBehaviour
     private Vector3 target;
     private NavMeshAgent agent;
     public float range; //in League units, divide by 70/3 to get Unity units
+    private float oldRange; //in League units, divide by 70/3 to get Unity units
     private float realRange; //in Unity units, multiply by 70/3 to get League units
     public float damage;
     public float atkSpeed; //attacks per second
@@ -25,8 +26,8 @@ public class player : MonoBehaviour
     {
         target = transform.position;
         agent = GetComponent<NavMeshAgent>();
-        realRange = range * 3/70;
         rangeIndicator.transform.localScale = new Vector3(range * 3 / 70, rangeIndicator.transform.localScale.y, range * 3 / 70);
+        oldRange = range;
     }
 
     // Update is called once per frame
@@ -41,13 +42,19 @@ public class player : MonoBehaviour
             attackCooldown = 0;
 		}
 
+        if(range != oldRange)
+		{
+            oldRange = range;
+            rangeIndicator.transform.localScale = new Vector3(range * 3 / 70, rangeIndicator.transform.localScale.y, range * 3 / 70);
+        }
+
         if (attackTarget != null)
         {
             float distance = Vector3.Distance(new Vector3(transform.position.x, transform.position.z), new Vector3(attackTarget.transform.position.x, attackTarget.transform.position.z));
 
             if (attackMoving)
             {
-                if (distance <= realRange)
+                if (distance <= range * 3 / 70)
                 {
                     agent.isStopped = true;
                     attackMoving = false;
@@ -56,7 +63,7 @@ public class player : MonoBehaviour
             }
             else //we have a target and weren't moving last frame
             {
-                if (distance > realRange) //we need to see if it's moved out of range first
+                if (distance > range * 3 / 70) //we need to see if it's moved out of range first
                 {
                     agent.isStopped = false;
                     attackMoving = true;
@@ -82,7 +89,7 @@ public class player : MonoBehaviour
                     {
                         target = hit.point;
                         float distance = Vector3.Distance(new Vector3(transform.position.x, transform.position.z), new Vector3(hit.collider.gameObject.transform.position.x, hit.collider.gameObject.transform.position.z));
-                        if (distance > realRange)
+                        if (distance > range * 3 / 70)
                         {
                             //Debug.Log(distance);
                             agent.SetDestination(target);
