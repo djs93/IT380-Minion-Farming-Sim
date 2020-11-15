@@ -31,31 +31,44 @@ public class minion : MonoBehaviour
         target = transform.position;
         agent = GetComponent<NavMeshAgent>();
         realRange = range * 3 / 70;
+        Debug.Log("Real Range: " + realRange);
         elligibleEnemies = new List<GameObject>();
         detectCollider.radius = (detectionRadius * 3 / 70)/2;
     }
 
-    public void OnTriggerEnter(Collider col)
-    {
-		if (blueTeam && (col.gameObject.tag.Equals("Enemy") || (col.gameObject.tag.Equals("Player")&&attackPlayer)))
-		{
-            elligibleEnemies.Add(col.gameObject);
+    public void TryAddElligibleEnemy(GameObject enemyObj)
+	{
+        if (blueTeam && (enemyObj.tag.Equals("Enemy") || (enemyObj.tag.Equals("Player") && attackPlayer)))
+        {
+            elligibleEnemies.Add(enemyObj);
+            Debug.Log("Added object: " + enemyObj.name);
         }
-        else if(!blueTeam && (col.gameObject.tag.Equals("Ally") || (col.gameObject.tag.Equals("Player") && attackPlayer)))
-		{
-            elligibleEnemies.Add(col.gameObject);
+        else if (!blueTeam && (enemyObj.tag.Equals("Ally") || (enemyObj.tag.Equals("Player") && attackPlayer)))
+        {
+            elligibleEnemies.Add(enemyObj);
+            Debug.Log("Added object: " + enemyObj.name);
         }
     }
 
-    public void OnTriggerExit(Collider col)
+    public void TryRemoveElligibleEnemy(GameObject enemyObj)
     {
-        if (blueTeam && (col.gameObject.tag.Equals("Enemy") || (col.gameObject.tag.Equals("Player") && attackPlayer)))
+        if (blueTeam && (enemyObj.tag.Equals("Enemy") || (enemyObj.tag.Equals("Player") && attackPlayer)))
         {
-            elligibleEnemies.Remove(col.gameObject);
+            elligibleEnemies.Remove(enemyObj);
+			if (elligibleEnemies.Count == 0)
+			{
+                attackTarget = null;
+                attackMoving = false;
+			}
         }
-        else if (!blueTeam && (col.gameObject.tag.Equals("Ally") || (col.gameObject.tag.Equals("Player") && attackPlayer)))
+        else if (!blueTeam && (enemyObj.tag.Equals("Ally") || (enemyObj.tag.Equals("Player") && attackPlayer)))
         {
-            elligibleEnemies.Remove(col.gameObject);
+            elligibleEnemies.Remove(enemyObj);
+            if (elligibleEnemies.Count == 0)
+            {
+                attackTarget = null;
+                attackMoving = false;
+            }
         }
     }
 
@@ -73,44 +86,52 @@ public class minion : MonoBehaviour
 
         if (attackTarget == null && elligibleEnemies.Count > 0)
         {
-            float distance = Vector3.Distance(new Vector3(transform.position.x, transform.position.z), new Vector3(elligibleEnemies[0].transform.position.x, elligibleEnemies[0].transform.transform.position.z));
-            if (distance > realRange)
-            {
-                //Debug.Log(distance);
-                agent.SetDestination(target);
-                attackTarget = elligibleEnemies[0];
-                attackMoving = true;
-                agent.isStopped = false;
-            }
-            else
-            {
-                attackTarget = elligibleEnemies[0];
-                agent.isStopped = true;
-            }
+            attackTarget = elligibleEnemies[0];
+            Debug.Log("Set attack target to "+attackTarget.name);
         }
 
-        if (attackMoving && attackTarget != null)
+        if (attackTarget != null)
         {
             float distance = Vector3.Distance(new Vector3(transform.position.x, transform.position.z), new Vector3(attackTarget.transform.position.x, attackTarget.transform.position.z));
-            if (distance <= realRange)
+            Debug.Log("Distance: " + distance);
+            if (attackMoving)
             {
-                agent.isStopped = true;
-                attackMoving = false;
-                TryAttack(attackTarget);
+                if (distance <= realRange)
+                {
+                    Debug.Log("Trying attack");
+                    agent.isStopped = true;
+                    attackMoving = false;
+                    TryAttack(attackTarget);
+                }
+				else
+				{
+                    agent.SetDestination(attackTarget.transform.position);
+                }
+            }
+            else //we have a target and weren't moving last frame
+            {
+                if (distance > realRange) //we need to see if it's moved out of range first
+                {
+                    Debug.Log("Moving closer to attack");
+                    agent.isStopped = false;
+                    attackMoving = true;
+                    agent.SetDestination(attackTarget.transform.position);
+                }
+                else
+                {
+                    Debug.Log("Attacking");
+                    TryAttack(attackTarget);
+                }
             }
         }
-        else if (attackTarget != null)
-        {
-            TryAttack(attackTarget);
-        }
 		else
-        {
-            attackMoving = false;
+		{
             agent.isStopped = false;
+            attackMoving = false;
             agent.SetDestination(goalTarget.transform.position);
         }
 
-        
+
         /**
         if (Input.GetButtonDown("Fire2"))
         {
