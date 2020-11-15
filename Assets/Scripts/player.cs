@@ -85,23 +85,35 @@ public class player : MonoBehaviour
                 //Debug.Log("Object hit: "+hit.collider.gameObject.tag);
                 if(hit.collider.gameObject.tag.Equals("Enemy"))//we just shot a minion with our ray
                 {
-                    if (hit.collider.gameObject != attackTarget)
+                    minion hitMinion = hit.collider.gameObject.GetComponent<minion>();
+                    if (hitMinion && hitMinion.currentHealth > 0)
                     {
-                        target = hit.point;
-                        float distance = Vector3.Distance(new Vector3(transform.position.x, transform.position.z), new Vector3(hit.collider.gameObject.transform.position.x, hit.collider.gameObject.transform.position.z));
-                        if (distance > range * 3 / 70)
+                        if (hit.collider.gameObject != attackTarget)
                         {
-                            //Debug.Log(distance);
-                            agent.SetDestination(target);
-                            attackTarget = hit.collider.gameObject;
-                            attackMoving = true;
-                            agent.isStopped = false;
+                            target = hit.point;
+                            float distance = Vector3.Distance(new Vector3(transform.position.x, transform.position.z), new Vector3(hit.collider.gameObject.transform.position.x, hit.collider.gameObject.transform.position.z));
+                            if (distance > range * 3 / 70)
+                            {
+                                //Debug.Log(distance);
+                                agent.SetDestination(target);
+                                attackTarget = hit.collider.gameObject;
+                                attackMoving = true;
+                                agent.isStopped = false;
+                            }
+                            else
+                            {
+                                attackTarget = hit.collider.gameObject;
+                                agent.isStopped = true;
+                            }
                         }
-						else
-						{
-                            attackTarget = hit.collider.gameObject;
-                            agent.isStopped = true;
-                        }
+                    }
+					else //if we clicked on a dead minion, don't attack, just move to that position
+					{
+                        target = hit.collider.gameObject.transform.position;
+                        agent.SetDestination(target);
+                        attackMoving = false;
+                        agent.isStopped = false;
+                        attackTarget = null;
                     }
                     //agent.SetDestination(target);
                 }
