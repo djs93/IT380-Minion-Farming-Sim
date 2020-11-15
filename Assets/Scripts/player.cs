@@ -41,20 +41,34 @@ public class player : MonoBehaviour
             attackCooldown = 0;
 		}
 
-		if (attackMoving && attackTarget!=null)
-		{
+        if (attackTarget != null)
+        {
             float distance = Vector3.Distance(new Vector3(transform.position.x, transform.position.z), new Vector3(attackTarget.transform.position.x, attackTarget.transform.position.z));
-            if (distance <= realRange)
+
+            if (attackMoving)
             {
-                agent.isStopped = true;
-                attackMoving = false;
-                TryAttack(attackTarget);
+                if (distance <= realRange)
+                {
+                    agent.isStopped = true;
+                    attackMoving = false;
+                    TryAttack(attackTarget);
+                }
+            }
+            else //we have a target and weren't moving last frame
+            {
+                if (distance > realRange) //we need to see if it's moved out of range first
+                {
+                    agent.isStopped = false;
+                    attackMoving = true;
+                    TryAttack(attackTarget);
+                }
+                else
+                {
+                    TryAttack(attackTarget);
+                }
             }
         }
-        else if (attackTarget != null)
-		{
-            TryAttack(attackTarget);
-        }
+
         if (Input.GetButtonDown("Fire2"))
         {
             RaycastHit hit;
