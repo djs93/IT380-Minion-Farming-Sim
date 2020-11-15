@@ -35,6 +35,7 @@ public class minion : MonoBehaviour
     public ParticleSystem goldParticles;
     private bool deathAnimationPlayed;
     public GameObject destructionObject;
+    public GoalManager goalManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -226,6 +227,7 @@ public class minion : MonoBehaviour
 			if (playerDamage)
 			{
                 goldParticles.Play();
+                goalManager.AddKill();
 			}
 			else
             {
