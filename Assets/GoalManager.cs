@@ -24,8 +24,13 @@ public class GoalManager : MonoBehaviour
 	public TextMeshProUGUI goalWindowText;
 
 	public GameObject congratsCanvas;
-    // Start is called before the first frame update
-    public void AddKill()
+
+	public void Start()
+	{
+		InitGoalWindow();
+	}
+	// Start is called before the first frame update
+	public void AddKill()
 	{
 		if (goalType == GoalType.GT_Kills)
 		{
@@ -35,6 +40,14 @@ public class GoalManager : MonoBehaviour
 		if ((intGoalToggle && intGoalProgress >= intGoal) || (!intGoalToggle &&floatGoalProgress >= floatGoal))
 		{
 			popCongrats();
+		}
+	}
+
+	public void InitGoalWindow()
+	{
+		if (goalType == GoalType.GT_Kills)
+		{
+			goalWindowText.text = "<b>Goal:</b>" + intGoalProgress + "/" + intGoal + " " + goalSuffix;
 		}
 	}
 
