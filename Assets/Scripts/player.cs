@@ -60,7 +60,7 @@ public class player : MonoBehaviour
                 {
                     agent.isStopped = false;
                     attackMoving = true;
-                    TryAttack(attackTarget);
+                    agent.SetDestination(attackTarget.transform.position);
                 }
                 else
                 {
