@@ -217,6 +217,17 @@ public class minion : MonoBehaviour
             }
             deathAnimationPlayed = true;
 		}
+        if(!playerDamage && attackTarget && attackTarget.tag.Equals("Player")) //got damaged by a minion but we're targeting the player, retarget to a minion!
+		{
+			//pick non-character target
+			for (int i = 0; i < elligibleEnemies.Count; i++)
+			{
+				if (!elligibleEnemies[i].tag.Equals("Player"))
+				{
+                    attackTarget = elligibleEnemies[i];
+                }
+			}
+		}
 	}
 
     public void Die()
