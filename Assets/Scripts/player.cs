@@ -20,12 +20,14 @@ public class player : MonoBehaviour
     public ParticleSystem meleeParticles;
     public GameObject rangeIndicator;
     public LayerMask rayMask;
+    public float movementSpeed; //conversion factor is 9.5 Unity units to 325 league units for speed
 
     // Start is called before the first frame update
     void Start()
     {
         target = transform.position;
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = movementSpeed * 9.5f / 325;
         rangeIndicator.transform.localScale = new Vector3(range * 3 / 70, rangeIndicator.transform.localScale.y, range * 3 / 70);
         oldRange = range;
     }

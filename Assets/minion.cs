@@ -41,6 +41,7 @@ public class minion : MonoBehaviour
         slider.maxValue = health;
         target = transform.position;
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = moveSpeed * 9.5f / 325;
         elligibleEnemies = new List<GameObject>();
         detectCollider.radius = (detectionRadius * 3 / 70)/2;
         gameObject.GetComponent<MeshRenderer>().material.color = blueTeam ? Color.blue : Color.red;
