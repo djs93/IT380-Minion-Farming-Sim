@@ -198,11 +198,15 @@ public class minion : MonoBehaviour
         }
     }
 
-    void RecalculateHealhbar()
+    public void RecalculateHealhbar()
 	{
         slider.value = currentHealth;
 
-        float thresholdPosition = (userPlayer.damage*(100/(100+armor))/health)*960;
+        float thresholdPosition = ((userPlayer.damage*(100/(100+armor)))/health)*960;
+		if (thresholdPosition > 960.0f)
+		{
+            thresholdPosition = 960.0f;
+		}
         executeThreshold.anchoredPosition = new Vector2(thresholdPosition, executeThreshold.anchoredPosition.y);
         if (executeThreshold.gameObject.activeSelf)
         {
@@ -220,6 +224,7 @@ public class minion : MonoBehaviour
     public void TakeDamage(float rawDamage, bool playerDamage)
 	{
         float realDamage = rawDamage * (100 / (100 + armor));
+        Debug.Log("Taking " + realDamage + "damage");
         currentHealth -= realDamage;
         RecalculateHealhbar();
 		if (currentHealth <= 0 && !deathAnimationPlayed)
@@ -252,5 +257,18 @@ public class minion : MonoBehaviour
 	{
         Destroy(destructionObject);
         //ToDo: add other death things here
+    }
+
+    public static void RecalcAllHealthbars()
+	{
+        GameObject[] minions = GameObject.FindGameObjectsWithTag("Enemy");
+		for (int i = 0; i < minions.Length; i++)
+		{
+            minion minionComp = minions[i].GetComponent<minion>();
+            if (minionComp && minionComp.executeThreshold && minionComp.executeThreshold.gameObject.activeSelf)
+			{
+                minionComp.RecalculateHealhbar();
+			}
+		}
     }
 }

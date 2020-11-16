@@ -160,4 +160,15 @@ public class player : MonoBehaviour
             attackCooldown = 1 / atkSpeed;
         }
 	}
+
+    public void ToggleRangeDisplay()
+	{
+        rangeIndicator.SetActive(!rangeIndicator.activeSelf);
+	}
+
+    public void SetMoveSpeed(float speed)
+	{
+        movementSpeed = speed;
+        agent.speed = movementSpeed * 9.5f / 325;
+    }
 }

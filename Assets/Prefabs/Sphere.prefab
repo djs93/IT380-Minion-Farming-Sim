@@ -224,9 +224,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 20
+  speed: 30
   damage: 0
   fromPlayer: 0
+  deathTarget: {x: 0, y: 0, z: 0}
 --- !u!54 &8928639503946308435
 Rigidbody:
   m_ObjectHideFlags: 0
