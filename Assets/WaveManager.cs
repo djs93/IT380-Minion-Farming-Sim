@@ -43,15 +43,15 @@ public class WaveManager : MonoBehaviour
             }
             //spawn next minion in sequence
             currentSpawnPos++;
-			if (currentSpawnPos == waveComposition.Count)
+			if (currentSpawnPos == (waveCounter % 3 == 0 ? altWaveComposition.Count : waveComposition.Count))
 			{
                 currentSpawnPos = 0;
                 timeUntilNextSpawn = timeInBetweenWaves;
-			}
+                waveCounter++;
+            }
 			else
 			{
                 timeUntilNextSpawn = timeInBetweenWaveMinions;
-                waveCounter++;
             }
 		}
 		else
