@@ -256,7 +256,7 @@ public class minion : MonoBehaviour
 			//pick non-character target
 			for (int i = 0; i < elligibleEnemies.Count; i++)
 			{
-				if (!elligibleEnemies[i].tag.Equals("Player"))
+				if (elligibleEnemies[i] && !elligibleEnemies[i].tag.Equals("Player"))
 				{
                     attackTarget = elligibleEnemies[i];
                 }
