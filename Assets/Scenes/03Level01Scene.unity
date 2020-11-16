@@ -7611,7 +7611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goalType: 1
   intGoalToggle: 1
-  intGoal: 5
+  intGoal: 12
   intGoalProgress: 0
   floatGoal: 0
   floatGoalProgress: 0
