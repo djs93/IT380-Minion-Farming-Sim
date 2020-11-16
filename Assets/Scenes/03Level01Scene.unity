@@ -506,7 +506,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 99411618}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2089075374}
+        m_MethodName: ModHealthMod
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 10
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &99411618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,7 +636,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 109895967}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2089075374}
+        m_MethodName: ModDamageMod
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: -1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &109895967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2406,7 +2428,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<b>Health Multiplier:</b>\n 30"
+  m_text: "<b>Health Mod:</b>\n 30"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2433,7 +2455,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 9.4
+  m_fontSize: 11
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2697,7 +2719,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 690134047}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2089075374}
+        m_MethodName: ModArmorMod
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &690134047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3438,7 +3471,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 769749102}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2089075374}
+        m_MethodName: ModAtkSpeedMod
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: -5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &769749102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3764,7 +3808,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 793192170}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2089075374}
+        m_MethodName: ModDamageMod
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &793192170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4905,7 +4960,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 972674740}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2089075374}
+        m_MethodName: ModMoveSpeedMod
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &972674740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5373,7 +5439,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -87.32, y: -36}
-  m_SizeDelta: {x: 140.76392, y: 25}
+  m_SizeDelta: {x: 140.76392, y: 23.740295}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1067425060
 MonoBehaviour:
@@ -5417,7 +5483,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1067425061}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2089075374}
+        m_MethodName: ToggleExeBars
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1067425061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6233,7 +6310,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1211804764}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2089075374}
+        m_MethodName: ModAtkSpeedMod
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1211804764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7226,6 +7314,7 @@ MonoBehaviour:
     type: 3}
   seigeMinionPrefab: {fileID: 679934086314323065, guid: 50a6b9cb9ca021d44b706cf40c7f10c2,
     type: 3}
+  minionPanel: {fileID: 2089075374}
 --- !u!4 &1438472535
 Transform:
   m_ObjectHideFlags: 0
@@ -7576,7 +7665,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1478680508}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2089075374}
+        m_MethodName: ModHealthMod
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: -10
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1478680508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7686,8 +7786,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.17}
+  m_SizeDelta: {x: 0, y: -3.7318287}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1492996406
 MonoBehaviour:
@@ -7708,7 +7808,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Toggle Execute Bar
+  m_text: Toggle Execute Bar (Bugged)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7735,15 +7835,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15.25
+  m_fontSize: 10.1
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 10
+  m_fontSizeMin: 8
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -8919,7 +9019,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1732225436}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2089075374}
+        m_MethodName: ModArmorMod
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: -1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1732225436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10133,7 +10244,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2011339235}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2089075374}
+        m_MethodName: ModMoveSpeedMod
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: -5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2011339235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11070,6 +11192,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 964a3286b8664544488f68cecef22de6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMod: 0
+  armorMod: 0
+  atkSpeedMod: 0
+  movespeedMod: 0
+  healthMod: 0
+  damageText: {fileID: 1045953730}
+  armorText: {fileID: 1171297296}
+  attackSpeedText: {fileID: 580954554}
+  moveSpeedText: {fileID: 972651896}
+  healthText: {fileID: 600470329}
 --- !u!1 &2089910063
 GameObject:
   m_ObjectHideFlags: 0

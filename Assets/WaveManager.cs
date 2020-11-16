@@ -22,6 +22,8 @@ public class WaveManager : MonoBehaviour
     public GameObject meleeMinionPrefab;
     public GameObject magicMinionPrefab;
     public GameObject seigeMinionPrefab;
+
+    public MinionPanel minionPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -77,6 +79,11 @@ public class WaveManager : MonoBehaviour
                 newMinionMinion.goalManager = goalManager;
                 newMinion.tag = "Ally";
                 newMinionMinion.gameObject.tag = "Ally";
+                newMinionMinion.damage += minionPanel.damageMod;
+                newMinionMinion.armor += minionPanel.armorMod;
+                newMinionMinion.attackSpeed += minionPanel.atkSpeedMod;
+                newMinionMinion.SetMoveSpeed(newMinionMinion.moveSpeed + minionPanel.movespeedMod);
+                newMinionMinion.health += minionPanel.healthMod;
 
                 newMinion = Instantiate(meleeMinionPrefab, redSpawn.position, redSpawn.rotation, null);
                 newMinionMinion = newMinion.GetComponentInChildren<minion>();
@@ -85,6 +92,11 @@ public class WaveManager : MonoBehaviour
                 newMinionMinion.userPlayer = userPlayer;
                 newMinionMinion.goalTarget = redTarget;
                 newMinionMinion.goalManager = goalManager;
+                newMinionMinion.damage += minionPanel.damageMod;
+                newMinionMinion.armor += minionPanel.armorMod;
+                newMinionMinion.attackSpeed += minionPanel.atkSpeedMod;
+                newMinionMinion.SetMoveSpeed(newMinionMinion.moveSpeed + minionPanel.movespeedMod);
+                newMinionMinion.health += minionPanel.healthMod;
                 break;
 			case minion.MinionTypes.MT_Ranged:
                 newMinion = Instantiate(magicMinionPrefab, blueSpawn.position, blueSpawn.rotation, null);
@@ -96,6 +108,11 @@ public class WaveManager : MonoBehaviour
                 newMinionMinion.goalManager = goalManager;
                 newMinion.tag = "Ally";
                 newMinionMinion.gameObject.tag = "Ally";
+                newMinionMinion.damage += minionPanel.damageMod;
+                newMinionMinion.armor += minionPanel.armorMod;
+                newMinionMinion.attackSpeed += minionPanel.atkSpeedMod;
+                newMinionMinion.SetMoveSpeed(newMinionMinion.moveSpeed + minionPanel.movespeedMod);
+                newMinionMinion.health += minionPanel.healthMod;
 
                 newMinion = Instantiate(magicMinionPrefab, redSpawn.position, redSpawn.rotation, null);
                 newMinionMinion = newMinion.GetComponentInChildren<minion>();
@@ -104,6 +121,11 @@ public class WaveManager : MonoBehaviour
                 newMinionMinion.userPlayer = userPlayer;
                 newMinionMinion.goalTarget = redTarget;
                 newMinionMinion.goalManager = goalManager;
+                newMinionMinion.damage += minionPanel.damageMod;
+                newMinionMinion.armor += minionPanel.armorMod;
+                newMinionMinion.attackSpeed += minionPanel.atkSpeedMod;
+                newMinionMinion.SetMoveSpeed(newMinionMinion.moveSpeed + minionPanel.movespeedMod);
+                newMinionMinion.health += minionPanel.healthMod;
                 break;
             case minion.MinionTypes.MT_Seige:
                 newMinion = Instantiate(seigeMinionPrefab, blueSpawn.position, blueSpawn.rotation, null);
@@ -115,6 +137,11 @@ public class WaveManager : MonoBehaviour
                 newMinionMinion.goalManager = goalManager;
                 newMinion.tag = "Ally";
                 newMinionMinion.gameObject.tag = "Ally";
+                newMinionMinion.damage += minionPanel.damageMod;
+                newMinionMinion.armor += minionPanel.armorMod;
+                newMinionMinion.attackSpeed += minionPanel.atkSpeedMod;
+                newMinionMinion.SetMoveSpeed(newMinionMinion.moveSpeed + minionPanel.movespeedMod);
+                newMinionMinion.health += minionPanel.healthMod;
 
                 newMinion = Instantiate(seigeMinionPrefab, redSpawn.position, redSpawn.rotation, null);
                 newMinionMinion = newMinion.GetComponentInChildren<minion>();
@@ -123,6 +150,11 @@ public class WaveManager : MonoBehaviour
                 newMinionMinion.userPlayer = userPlayer;
                 newMinionMinion.goalTarget = redTarget;
                 newMinionMinion.goalManager = goalManager;
+                newMinionMinion.damage += minionPanel.damageMod;
+                newMinionMinion.armor += minionPanel.armorMod;
+                newMinionMinion.attackSpeed += minionPanel.atkSpeedMod;
+                newMinionMinion.SetMoveSpeed(newMinionMinion.moveSpeed + minionPanel.movespeedMod);
+                newMinionMinion.health += minionPanel.healthMod;
                 break;
             default:
 				break;

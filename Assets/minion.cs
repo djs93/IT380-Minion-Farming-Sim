@@ -212,14 +212,15 @@ public class minion : MonoBehaviour
 	{
         slider.value = currentHealth;
 
-        float thresholdPosition = ((userPlayer.damage*(100/(100+armor)))/health)*960;
-		if (thresholdPosition > 960.0f)
-		{
-            thresholdPosition = 960.0f;
-		}
-        executeThreshold.anchoredPosition = new Vector2(thresholdPosition, executeThreshold.anchoredPosition.y);
         if (executeThreshold.gameObject.activeSelf)
         {
+            float thresholdPosition = ((userPlayer.damage * (100 / (100 + armor))) / health) * 960;
+            if (thresholdPosition > 960.0f)
+            {
+                thresholdPosition = 960.0f;
+            }
+
+            executeThreshold.anchoredPosition = new Vector2(thresholdPosition, executeThreshold.anchoredPosition.y);
             if (userPlayer.damage * (100 / (100 + armor)) >= currentHealth)
             {
                 executeThreshold.transform.GetComponentInParent<Image>().color = Color.green;
@@ -275,10 +276,28 @@ public class minion : MonoBehaviour
 		for (int i = 0; i < minions.Length; i++)
 		{
             minion minionComp = minions[i].GetComponent<minion>();
-            if (minionComp && minionComp.executeThreshold && minionComp.executeThreshold.gameObject.activeSelf)
+            if (minionComp && minionComp.slider && minionComp.slider.gameObject.activeSelf)
 			{
                 minionComp.RecalculateHealhbar();
 			}
 		}
+    }
+
+    public static void DisableExecuteBars()
+    {
+        GameObject[] minions = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < minions.Length; i++)
+        {
+            minion minionComp = minions[i].GetComponent<minion>();
+            if (minionComp && minionComp.executeThreshold)
+            {
+                minionComp.executeThreshold.gameObject.SetActive(!minionComp.executeThreshold.gameObject.activeSelf);
+            }
+        }
+    }
+
+    public void SetMoveSpeed(float speed)
+    {
+        moveSpeed = speed;
     }
 }
