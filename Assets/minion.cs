@@ -6,6 +6,13 @@ using UnityEngine.AI;
 
 public class minion : MonoBehaviour
 {
+    public enum MinionTypes
+	{
+        MT_Melee,
+        MT_Ranged,
+        MT_Seige
+	};
+
     private GameObject attackTarget;
     public float damage;
     public float health;
@@ -46,6 +53,8 @@ public class minion : MonoBehaviour
         elligibleEnemies = new List<GameObject>();
         detectCollider.radius = (detectionRadius * 3 / 70)/2;
         gameObject.GetComponent<MeshRenderer>().material.color = blueTeam ? Color.blue : Color.red;
+        var main = meleeParticles.main;
+        main.startColor = blueTeam ? Color.blue : Color.red;
         executeThreshold.gameObject.SetActive(!blueTeam);
         currentHealth = health;
         RecalculateHealhbar();

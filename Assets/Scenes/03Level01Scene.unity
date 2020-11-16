@@ -16675,7 +16675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goalType: 1
   intGoalToggle: 1
-  intGoal: 30
+  intGoal: 1
   intGoalProgress: 0
   floatGoal: 0
   floatGoalProgress: 0
@@ -17258,6 +17258,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1429865938}
   m_CullTransparentMesh: 0
+--- !u!1 &1438472533
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1438472535}
+  - component: {fileID: 1438472534}
+  m_Layer: 0
+  m_Name: Wave Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1438472534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438472533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d76c15dea26a9746b6e68dd12851d23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blueSpawn: {fileID: 0}
+  redSpawn: {fileID: 0}
+  timeInBetweenWaveMinions: 0
+  timeInBetweenWaves: 0
+  waveComposition: 
+  meleeMinionPrefab: {fileID: 0}
+  magicMinionPrefab: {fileID: 0}
+  seigeMinionPrefab: {fileID: 0}
+--- !u!4 &1438472535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438472533}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 705.25745, y: 78.75229, z: -37.671875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1447555221
 GameObject:
   m_ObjectHideFlags: 0
@@ -22889,7 +22940,7 @@ BoxCollider:
   m_GameObject: {fileID: 1579645480}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -23545,7 +23596,7 @@ BoxCollider:
   m_GameObject: {fileID: 1691264557}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -26151,6 +26202,7 @@ GameObject:
   - component: {fileID: 2089075371}
   - component: {fileID: 2089075373}
   - component: {fileID: 2089075372}
+  - component: {fileID: 2089075374}
   m_Layer: 5
   m_Name: Minion Stats Panel
   m_TagString: Untagged
@@ -26222,6 +26274,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2089075370}
   m_CullTransparentMesh: 0
+--- !u!114 &2089075374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089075370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 964a3286b8664544488f68cecef22de6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2089910063
 GameObject:
   m_ObjectHideFlags: 0
