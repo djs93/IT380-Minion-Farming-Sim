@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class ChampionPanel : MonoBehaviour
@@ -10,6 +11,7 @@ public class ChampionPanel : MonoBehaviour
     public TextMeshProUGUI rangeText;
     public TextMeshProUGUI attackSpeedText;
     public TextMeshProUGUI moveSpeedText;
+    public Toggle rangeToggle;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,7 @@ public class ChampionPanel : MonoBehaviour
         rangeText.text = "<b>Attack Range:</b><br>" + playerPlayer.range;
         attackSpeedText.text = "<b>Attack Speed:</b><br>" + playerPlayer.atkSpeed;
         moveSpeedText.text = "<b>Move Speed:</b><br>" + playerPlayer.movementSpeed;
+        rangeToggle.isOn = playerPlayer.ranged;
     }
 
     public void ModDamage(int amount)
@@ -60,9 +63,9 @@ public class ChampionPanel : MonoBehaviour
         playerPlayer.range = 575;
         playerPlayer.atkSpeed = 0.7f;
         playerPlayer.SetMoveSpeed(325);
+        playerPlayer.ranged = true;
         UpdateNumbers();
         RecalcMinionHealthbars();
-        playerPlayer.ranged = true;
     }
 
     public void SetPresetMage()
@@ -71,9 +74,9 @@ public class ChampionPanel : MonoBehaviour
         playerPlayer.range = 550;
         playerPlayer.atkSpeed = 0.6f;
         playerPlayer.SetMoveSpeed(330);
+        playerPlayer.ranged = true;
         UpdateNumbers();
         RecalcMinionHealthbars();
-        playerPlayer.ranged = true;
     }
 
     public void SetPresetTank()
@@ -82,13 +85,18 @@ public class ChampionPanel : MonoBehaviour
         playerPlayer.range = 175;
         playerPlayer.atkSpeed = 0.6f;
         playerPlayer.SetMoveSpeed(345);
+        playerPlayer.ranged = false;
         UpdateNumbers();
         RecalcMinionHealthbars();
-        playerPlayer.ranged = false;
     }
 
     public void RecalcMinionHealthbars()
 	{
         minion.RecalcAllHealthbars();
 	}
+
+    public void ToggleRanged()
+    {
+        playerPlayer.ranged = !playerPlayer.ranged;
+    }
 }
