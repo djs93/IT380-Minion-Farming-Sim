@@ -11,7 +11,9 @@ public class WaveManager : MonoBehaviour
     public float timeInBetweenWaveMinions;
     public float timeInBetweenWaves;
     public List<minion.MinionTypes> waveComposition;
+    public List<minion.MinionTypes> altWaveComposition;
     private int currentSpawnPos = 0;
+    private int waveCounter = 1;
     public player userPlayer;
     public GameObject blueTarget;
     public GameObject redTarget;
@@ -31,7 +33,14 @@ public class WaveManager : MonoBehaviour
     {
 		if (timeUntilNextSpawn <= 0)
 		{
-            SpawnMinionMirrored(waveComposition[currentSpawnPos]);
+            if (waveCounter % 3 == 0)
+            {
+                SpawnMinionMirrored(altWaveComposition[currentSpawnPos]);
+            }
+            else
+            {
+                SpawnMinionMirrored(waveComposition[currentSpawnPos]);
+            }
             //spawn next minion in sequence
             currentSpawnPos++;
 			if (currentSpawnPos == waveComposition.Count)
@@ -42,6 +51,7 @@ public class WaveManager : MonoBehaviour
 			else
 			{
                 timeUntilNextSpawn = timeInBetweenWaveMinions;
+                waveCounter++;
             }
 		}
 		else

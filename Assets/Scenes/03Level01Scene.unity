@@ -7214,7 +7214,8 @@ MonoBehaviour:
   redSpawn: {fileID: 1691264563}
   timeInBetweenWaveMinions: 1
   timeInBetweenWaves: 30
-  waveComposition: 00000000
+  waveComposition: 000000000000000000000000010000000100000001000000
+  altWaveComposition: 00000000000000000000000001000000010000000100000002000000
   userPlayer: {fileID: 2068883374}
   blueTarget: {fileID: 1691264557}
   redTarget: {fileID: 1579645480}

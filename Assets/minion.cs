@@ -13,7 +13,7 @@ public class minion : MonoBehaviour
         MT_Seige
 	};
 
-    private GameObject attackTarget;
+    public GameObject attackTarget;
     public float damage;
     public float health;
     public float currentHealth;
@@ -122,6 +122,7 @@ public class minion : MonoBehaviour
 					if (elligibleEnemies[i] && elligibleEnemies[i].activeSelf)
                     {
                         attackTarget = elligibleEnemies[i];
+                        break;
                     }
                 }
                 //Debug.Log("Set attack target to "+attackTarget.name);
