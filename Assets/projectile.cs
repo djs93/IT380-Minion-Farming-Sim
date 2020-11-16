@@ -56,7 +56,7 @@ public class projectile : MonoBehaviour
 
 	public void OnTriggerEnter(Collider other)
 	{
-		if(other.gameObject == target)
+		if(!dying && other.gameObject == target)
 		{
             //deal damage!
             minion targetMinion = target.GetComponent<minion>();
