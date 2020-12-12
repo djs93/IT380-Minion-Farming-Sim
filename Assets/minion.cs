@@ -283,7 +283,7 @@ public class minion : MonoBehaviour
 		}
     }
 
-    public static void DisableExecuteBars()
+    public static void ToggleExecuteBars()
     {
         GameObject[] minions = GameObject.FindGameObjectsWithTag("Enemy");
         for (int i = 0; i < minions.Length; i++)

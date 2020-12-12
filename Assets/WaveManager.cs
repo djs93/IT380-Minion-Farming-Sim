@@ -24,11 +24,12 @@ public class WaveManager : MonoBehaviour
     public GameObject seigeMinionPrefab;
 
     public MinionPanel minionPanel;
-    // Start is called before the first frame update
-    void Start()
-    {
+    public bool executeBarsEnabledOnSpawn = true;
 
-    }
+    public void ToggleExecutionBarsOnSpawn()
+	{
+        executeBarsEnabledOnSpawn = !executeBarsEnabledOnSpawn;
+	}
 
     // Update is called once per frame
     void Update()
@@ -64,9 +65,9 @@ public class WaveManager : MonoBehaviour
 
 	void SpawnMinionMirrored(minion.MinionTypes minionType)
 	{
-        GameObject newMinion;
-        minion newMinionMinion;
-
+        SpawnMinion(true, false, blueTarget, true, blueSpawn, minionType);
+        SpawnMinion(false, true, redTarget, false, redSpawn, minionType);
+        /**
         switch (minionType)
 		{
 			case minion.MinionTypes.MT_Melee:
@@ -159,5 +160,44 @@ public class WaveManager : MonoBehaviour
             default:
 				break;
 		}
+        **/
 	}
+
+    private void SpawnMinion(bool isBlueTeam, bool attackPlayer, GameObject goalTarget, bool isAlly, Transform spawnTransform, minion.MinionTypes minionType)
+	{
+        GameObject newMinion;
+        minion newMinionMinion;
+        GameObject spawnPrefab;
+
+		switch (minionType)
+		{
+			case minion.MinionTypes.MT_Melee:
+                spawnPrefab = meleeMinionPrefab;
+                break;
+			case minion.MinionTypes.MT_Ranged:
+                spawnPrefab = magicMinionPrefab;
+                break;
+			case minion.MinionTypes.MT_Seige:
+                spawnPrefab = seigeMinionPrefab;
+                break;
+			default:
+                Debug.LogWarning("Tried to spawn an invalid minion type!");
+                return;
+		}
+
+		newMinion = Instantiate(spawnPrefab, spawnTransform.position, spawnTransform.rotation, null);
+        newMinionMinion = newMinion.GetComponentInChildren<minion>();
+        newMinionMinion.blueTeam = isBlueTeam;
+        newMinionMinion.attackPlayer = attackPlayer;
+        newMinionMinion.userPlayer = userPlayer;
+        newMinionMinion.goalTarget = goalTarget;
+        newMinionMinion.goalManager = goalManager;
+		newMinion.tag = isAlly ? "Ally" : "Enemy";
+		newMinionMinion.gameObject.tag = isAlly ? "Ally" : "Enemy";
+		newMinionMinion.damage += minionPanel.damageMod;
+        newMinionMinion.armor += minionPanel.armorMod;
+        newMinionMinion.attackSpeed += minionPanel.atkSpeedMod;
+        newMinionMinion.SetMoveSpeed(newMinionMinion.moveSpeed + minionPanel.movespeedMod);
+        newMinionMinion.health += minionPanel.healthMod;
+    }
 }

@@ -16,10 +16,13 @@ public class MinionPanel : MonoBehaviour
     public TextMeshProUGUI attackSpeedText;
     public TextMeshProUGUI moveSpeedText;
     public TextMeshProUGUI healthText;
+
+    public WaveManager waveManager;
     // Start is called before the first frame update
     public void ToggleExeBars()
     {
-        minion.DisableExecuteBars();
+        minion.ToggleExecuteBars();
+        waveManager.ToggleExecutionBarsOnSpawn();
     }
 
     void Start()
