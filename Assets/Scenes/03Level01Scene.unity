@@ -8167,6 +8167,7 @@ MonoBehaviour:
   seigeMinionPrefab: {fileID: 679934086314323065, guid: 50a6b9cb9ca021d44b706cf40c7f10c2,
     type: 3}
   minionPanel: {fileID: 2089075374}
+  executeBarsEnabledOnSpawn: 1
 --- !u!4 &1438472535
 Transform:
   m_ObjectHideFlags: 0
@@ -8660,7 +8661,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Toggle Execute Bar (Bugged)
+  m_text: Toggle Kill Threshold Bar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8687,7 +8688,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10.1
+  m_fontSize: 11.95
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -12188,6 +12189,7 @@ MonoBehaviour:
   attackSpeedText: {fileID: 580954554}
   moveSpeedText: {fileID: 972651896}
   healthText: {fileID: 600470329}
+  waveManager: {fileID: 1438472534}
 --- !u!1 &2089910063
 GameObject:
   m_ObjectHideFlags: 0

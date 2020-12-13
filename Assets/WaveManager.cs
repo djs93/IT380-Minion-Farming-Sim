@@ -199,5 +199,14 @@ public class WaveManager : MonoBehaviour
         newMinionMinion.attackSpeed += minionPanel.atkSpeedMod;
         newMinionMinion.SetMoveSpeed(newMinionMinion.moveSpeed + minionPanel.movespeedMod);
         newMinionMinion.health += minionPanel.healthMod;
+
+        if (isBlueTeam)
+		{
+            newMinionMinion.executeThreshold.gameObject.SetActive(false);
+        }
+        else if (newMinionMinion.executeThreshold)
+        {
+            newMinionMinion.executeThreshold.gameObject.SetActive(executeBarsEnabledOnSpawn);
+        }
     }
 }

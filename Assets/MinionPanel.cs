@@ -21,8 +21,8 @@ public class MinionPanel : MonoBehaviour
     // Start is called before the first frame update
     public void ToggleExeBars()
     {
-        minion.ToggleExecuteBars();
         waveManager.ToggleExecutionBarsOnSpawn();
+        minion.SetExecuteBars(waveManager.executeBarsEnabledOnSpawn);
     }
 
     void Start()

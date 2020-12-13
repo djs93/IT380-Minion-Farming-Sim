@@ -55,7 +55,7 @@ public class minion : MonoBehaviour
         gameObject.GetComponent<MeshRenderer>().material.color = blueTeam ? Color.blue : Color.red;
         var main = meleeParticles.main;
         main.startColor = blueTeam ? Color.blue : Color.red;
-        executeThreshold.gameObject.SetActive(!blueTeam);
+        //executeThreshold.gameObject.SetActive(!blueTeam);
         currentHealth = health;
         RecalculateHealhbar();
     }
@@ -283,15 +283,15 @@ public class minion : MonoBehaviour
 		}
     }
 
-    public static void ToggleExecuteBars()
+    public static void SetExecuteBars(bool state)
     {
         GameObject[] minions = GameObject.FindGameObjectsWithTag("Enemy");
         for (int i = 0; i < minions.Length; i++)
         {
             minion minionComp = minions[i].GetComponent<minion>();
-            if (minionComp && minionComp.executeThreshold)
+            if (minionComp && !minionComp.blueTeam && minionComp.executeThreshold)
             {
-                minionComp.executeThreshold.gameObject.SetActive(!minionComp.executeThreshold.gameObject.activeSelf);
+                minionComp.executeThreshold.gameObject.SetActive(state);
             }
         }
     }
