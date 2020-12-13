@@ -1,27 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ControlPanel : MonoBehaviour
 {
 	public RectTransform panel;
-	bool collapsed = false;
+	public TextMeshProUGUI buttonText;
+	public Animator animator;
+
 	public void Collapse()
 	{
+		bool collapsed = animator.GetBool("open");
+
 		if (!collapsed)
 		{
-			panel.rect.Set(panel.rect.x, -90, panel.rect.width, panel.rect.height);
-			collapsed = true;
+			buttonText.text = "Expand";
 		}
 		else
 		{
-			Expand();
-			collapsed = false;
+			buttonText.text = "Collapse";
 		}
-	}
 
-	public void Expand()
-	{ 
-		panel.rect.Set(panel.rect.x, 80, panel.rect.width, panel.rect.height);
+		animator.SetBool("open", !collapsed);
 	}
 }
