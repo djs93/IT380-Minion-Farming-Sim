@@ -211,7 +211,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &679934085254499868
 MonoBehaviour:
@@ -5323,6 +5323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91ed0637ca628f4a8a0c2ef74b5ec89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackTarget: {fileID: 0}
   damage: 24
   health: 296
   currentHealth: 0
