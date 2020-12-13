@@ -237,7 +237,7 @@ public class minion : MonoBehaviour
     public void TakeDamage(float rawDamage, bool playerDamage)
 	{
         float realDamage = rawDamage * (100 / (100 + armor));
-        Debug.Log("Taking " + realDamage + "damage");
+        //Debug.Log("Taking " + realDamage + "damage");
         currentHealth -= realDamage;
         RecalculateHealhbar();
 		if (currentHealth <= 0 && !deathAnimationPlayed)

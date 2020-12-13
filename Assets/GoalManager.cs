@@ -26,6 +26,8 @@ public class GoalManager : MonoBehaviour
 	public GameObject congratsCanvas;
 	public TextMeshProUGUI congratsWindowText;
 
+	public TutorialManager tutorialManager;
+
 	public void Start()
 	{
 		InitGoalWindow();
@@ -59,8 +61,15 @@ public class GoalManager : MonoBehaviour
 	
 	public void popCongrats()
 	{
-		congratsCanvas.SetActive(true);
-		congratsWindowText.text = congratsWindowText.text.Replace("{goalAmount}",intGoal.ToString());
-		congratsWindowText.text = congratsWindowText.text.Replace("{goalSuffix}",goalSuffix);
+		if (tutorialManager)
+		{
+			tutorialManager.CompleteCurrentGoal();
+		}
+		else
+		{
+			congratsCanvas.SetActive(true);
+			congratsWindowText.text = congratsWindowText.text.Replace("{goalAmount}", intGoal.ToString());
+			congratsWindowText.text = congratsWindowText.text.Replace("{goalSuffix}", goalSuffix);
+		}
 	}
 }
