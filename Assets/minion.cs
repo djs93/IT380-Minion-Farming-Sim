@@ -193,6 +193,8 @@ public class minion : MonoBehaviour
                 projProjectile.target = target;
                 projProjectile.fromPlayer = false;
                 projProjectile.damage = damage;
+                proj.GetComponent<MeshRenderer>().material.color = blueTeam ? Color.blue : Color.red;
+                proj.GetComponent<TrailRenderer>().material.color = blueTeam ? Color.blue : Color.red;
             }
             else
             {
