@@ -5817,6 +5817,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2068883374}
+        m_MethodName: SetCanMove
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1038079485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7619,6 +7630,7 @@ MonoBehaviour:
   goalWindowText: {fileID: 171832748}
   congratsCanvas: {fileID: 900647094}
   congratsWindowText: {fileID: 183955946}
+  tutorialManager: {fileID: 0}
 --- !u!4 &1310612765
 Transform:
   m_ObjectHideFlags: 0
@@ -11728,6 +11740,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 19
   movementSpeed: 330
+  canMove: 0
 --- !u!54 &2068883375
 Rigidbody:
   m_ObjectHideFlags: 0

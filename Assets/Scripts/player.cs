@@ -22,6 +22,8 @@ public class player : MonoBehaviour
     public LayerMask rayMask;
     public float movementSpeed; //conversion factor is 9.5 Unity units to 325 league units for speed
 
+    public bool canMove = false; //can we currently move? (used for UI movement-lock)
+
     // Start is called before the first frame update
     void Start()
     {
@@ -78,7 +80,7 @@ public class player : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Fire2") || Input.GetButton("Fire2"))
+        if (canMove && (Input.GetButtonDown("Fire2") || Input.GetButton("Fire2")))
         {
             RaycastHit hit;
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -171,4 +173,9 @@ public class player : MonoBehaviour
         movementSpeed = speed;
         agent.speed = movementSpeed * 9.5f / 325;
     }
+
+    public void SetCanMove(bool newCanMove)
+	{
+        canMove = newCanMove;
+	}
 }

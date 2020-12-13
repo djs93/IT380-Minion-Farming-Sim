@@ -83,7 +83,7 @@ public class TutorialManager : MonoBehaviour
 
 		stateTitleStrings.Add(TutorialState.TS_1_2_MOVE_YELLOW, "Movement");
 		stateDescStrings.Add(TutorialState.TS_1_2_MOVE_YELLOW, "Great! Now use RIGHT CLICK to move your character to the yellow circle!");
-		stateReminderStrings.Add(TutorialState.TS_1_2_MOVE_YELLOW_IN_GAME, "Move to the green circle!");
+		stateReminderStrings.Add(TutorialState.TS_1_2_MOVE_YELLOW_IN_GAME, "Move to the yellow circle!");
 
 		stateTitleStrings.Add(TutorialState.TS_1_END, "Movement");
 		stateDescStrings.Add(TutorialState.TS_1_END, "Excellent! Click Next to learn about attacking!");
@@ -170,6 +170,7 @@ public class TutorialManager : MonoBehaviour
 				reminderPanel.SetActive(true);
 				reminderDescText.text = stateReminderStrings[state];
 				goalCircleGreen.SetActive(true);
+				playerComponent.SetCanMove(true);
 				break;
 			case TutorialState.TS_1_2_MOVE_YELLOW:
 				infoPanel.SetActive(true);
@@ -177,12 +178,14 @@ public class TutorialManager : MonoBehaviour
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
 				goalCircleGreen.SetActive(false);
+				playerComponent.SetCanMove(false);
 				break;
 			case TutorialState.TS_1_2_MOVE_YELLOW_IN_GAME:
 				infoPanel.SetActive(false);
 				reminderPanel.SetActive(true);
 				reminderDescText.text = stateReminderStrings[state];
 				goalCircleYellow.SetActive(true);
+				playerComponent.SetCanMove(true);
 				break;
 			case TutorialState.TS_1_END:
 				infoPanel.SetActive(true);
@@ -190,6 +193,7 @@ public class TutorialManager : MonoBehaviour
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
 				goalCircleYellow.SetActive(false);
+				playerComponent.SetCanMove(false);
 				break;
 			case TutorialState.TS_2_1_RIGHT_CLICK:
 				infoTitleText.text = stateTitleStrings[state];
