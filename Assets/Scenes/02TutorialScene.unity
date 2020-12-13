@@ -2772,7 +2772,9 @@ MonoBehaviour:
   infoDescText: {fileID: 1184635866}
   reminderDescText: {fileID: 1873842423}
   playerComponent: {fileID: 1368413883}
-  state: 11
+  state: 18
+  goalManager: {fileID: 1777367586}
+  waveManager: {fileID: 1729186308}
   goalCircleGreen: {fileID: 915255728}
   goalCircleYellow: {fileID: 841709897}
   tutorialMinion: {fileID: 1713493216}
@@ -14963,6 +14965,7 @@ MonoBehaviour:
   minionPanel: {fileID: 12205282}
   executeBarsEnabledOnSpawn: 1
   spawningEnabled: 0
+  tutorialManager: {fileID: 547869472}
 --- !u!4 &1729186309
 Transform:
   m_ObjectHideFlags: 0

@@ -8,12 +8,17 @@ public class WaveManager : MonoBehaviour
     public Transform blueSpawn;
     public Transform redSpawn;
     private float timeUntilNextSpawn;
+    private float timeUntilNextSpawnSingle;
     public float timeInBetweenWaveMinions;
     public float timeInBetweenWaves;
     public List<minion.MinionTypes> waveComposition;
     public List<minion.MinionTypes> altWaveComposition;
+    private List<GameObject> spawnedMinions;
     private int currentSpawnPos = 0;
+    private int currentSpawnPosSingle = 0;
     private int waveCounter = 1;
+    private bool spawningSingleWave;
+    private bool isSingleAltWave;
     public player userPlayer;
     public GameObject blueTarget;
     public GameObject redTarget;
@@ -28,7 +33,13 @@ public class WaveManager : MonoBehaviour
 
     public bool spawningEnabled = true;
 
-    public void ToggleExecutionBarsOnSpawn()
+    public TutorialManager tutorialManager;
+
+	void Start()
+	{
+        spawnedMinions = new List<GameObject>();
+    }
+	public void ToggleExecutionBarsOnSpawn()
 	{
         executeBarsEnabledOnSpawn = !executeBarsEnabledOnSpawn;
 	}
@@ -36,6 +47,36 @@ public class WaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if (spawningSingleWave)
+		{
+            if (timeUntilNextSpawnSingle <= 0)
+            {
+                if (isSingleAltWave)
+                {
+                    SpawnMinionMirrored(altWaveComposition[currentSpawnPosSingle]);
+                }
+                else
+                {
+                    SpawnMinionMirrored(waveComposition[currentSpawnPosSingle]);
+                }
+                //spawn next minion in sequence
+                currentSpawnPosSingle++;
+                if (currentSpawnPosSingle == (isSingleAltWave ? altWaveComposition.Count : waveComposition.Count))
+                {
+                    currentSpawnPosSingle = 0;
+                    timeUntilNextSpawnSingle = 0;
+                    spawningSingleWave = false;
+                }
+                else
+                {
+                    timeUntilNextSpawnSingle = timeInBetweenWaveMinions;
+                }
+            }
+            else
+            {
+                timeUntilNextSpawnSingle -= Time.deltaTime;
+            }
+        }
 		if (!spawningEnabled)
 		{
             return;
@@ -210,9 +251,33 @@ public class WaveManager : MonoBehaviour
 		{
             newMinionMinion.executeThreshold.gameObject.SetActive(false);
         }
-        else if (newMinionMinion.executeThreshold)
+        else
         {
-            newMinionMinion.executeThreshold.gameObject.SetActive(executeBarsEnabledOnSpawn);
+            if (newMinionMinion.executeThreshold)
+            {
+                newMinionMinion.executeThreshold.gameObject.SetActive(executeBarsEnabledOnSpawn);
+            }
+
+			if (tutorialManager)
+			{
+                newMinionMinion.tutorialManager = tutorialManager;
+			}
         }
+
+        spawnedMinions.Add(newMinion);
     }
+
+    public void SpawnSingleWave(bool isAltWave)
+	{
+        spawningSingleWave = true;
+        isSingleAltWave = isAltWave;
+    }
+
+    public void DestroyAllMinions()
+	{
+		foreach (GameObject gameObject in spawnedMinions)
+		{
+            Destroy(gameObject);
+		}
+	}
 }
