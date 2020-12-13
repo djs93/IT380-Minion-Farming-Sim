@@ -80,17 +80,23 @@ public class player : MonoBehaviour
             }
         }
 
-        if (canMove && (Input.GetButtonDown("Fire2") || Input.GetButton("Fire2")))
+        if ((Input.GetButtonDown("Fire2") || Input.GetButton("Fire2")))
         {
             RaycastHit hit;
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, 100000, rayMask))
             {
-                //Debug.Log("Object hit: "+hit.collider.gameObject.tag);
-                if(hit.collider.gameObject.tag.Equals("Enemy"))//we just shot a minion with our ray
+                if (hit.collider.gameObject.tag.Equals("Enemy"))//we just shot a minion with our ray
                 {
+                    Debug.Log("Object hit: " + hit.collider.gameObject.name);
                     minion hitMinion = hit.collider.gameObject.GetComponent<minion>();
-                    if (hitMinion && hitMinion.currentHealth > 0)
+                    TutorialMinion hitTutMinion = null;
+					if (!hitMinion)
+					{
+                        hitTutMinion = hit.collider.gameObject.GetComponent<TutorialMinion>();
+                        Debug.Log("IN");
+                    }
+                    if (hitTutMinion || (hitMinion && hitMinion.currentHealth > 0))
                     {
                         if (hit.collider.gameObject != attackTarget)
                         {
@@ -98,6 +104,10 @@ public class player : MonoBehaviour
                             float distance = Vector3.Distance(new Vector3(transform.position.x, transform.position.z), new Vector3(hit.collider.gameObject.transform.position.x, hit.collider.gameObject.transform.position.z));
                             if (distance > range * 3 / 70)
                             {
+                                if (!canMove)
+                                {
+                                    return;
+                                }
                                 //Debug.Log(distance);
                                 agent.SetDestination(target);
                                 attackTarget = hit.collider.gameObject;
@@ -113,6 +123,10 @@ public class player : MonoBehaviour
                     }
 					else //if we clicked on a dead minion, don't attack, just move to that position
 					{
+						if (!canMove)
+						{
+                            return;
+						}
                         target = hit.collider.gameObject.transform.position;
                         agent.SetDestination(target);
                         attackMoving = false;
@@ -123,6 +137,10 @@ public class player : MonoBehaviour
                 }
                 else //we just shot the ground, an ally minion, or ourself, just move
                 {
+                    if (!canMove)
+                    {
+                        return;
+                    }
                     target = hit.point;
                     agent.SetDestination(target);
                     attackMoving = false;
@@ -178,4 +196,11 @@ public class player : MonoBehaviour
 	{
         canMove = newCanMove;
 	}
+
+    public void ClearAttackTarget()
+	{
+        attackTarget = null;
+        attackMoving = false;
+        agent.isStopped = true;
+    }
 }

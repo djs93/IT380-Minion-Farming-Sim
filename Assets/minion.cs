@@ -43,6 +43,7 @@ public class minion : MonoBehaviour
     private bool deathAnimationPlayed;
     public GameObject destructionObject;
     public GoalManager goalManager;
+    public TutorialManager tutorialManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -268,6 +269,10 @@ public class minion : MonoBehaviour
 
     public void Die()
 	{
+		if (tutorialManager)
+		{
+            tutorialManager.AddMinionDeath();
+		}
         Destroy(destructionObject);
         //ToDo: add other death things here
     }

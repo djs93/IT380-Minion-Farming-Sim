@@ -2366,7 +2366,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &471795634
 GameObject:
@@ -2772,9 +2772,10 @@ MonoBehaviour:
   infoDescText: {fileID: 1184635866}
   reminderDescText: {fileID: 1873842423}
   playerComponent: {fileID: 1368413883}
-  state: 0
+  state: 11
   goalCircleGreen: {fileID: 915255728}
   goalCircleYellow: {fileID: 841709897}
+  tutorialMinion: {fileID: 1713493216}
 --- !u!4 &547869473
 Transform:
   m_ObjectHideFlags: 0
@@ -2787,7 +2788,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &559170583
 GameObject:
@@ -11792,8 +11793,9 @@ Transform:
   m_Children:
   - {fileID: 915255729}
   - {fileID: 841709898}
+  - {fileID: 1713493215}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1276695716
 GameObject:
@@ -12725,7 +12727,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 600
   damage: 60
-  atkSpeed: 2.5
+  atkSpeed: 0.8
   ranged: 1
   projectilePrefab: {fileID: 2200719669051108938, guid: 665c84d9d80dc6f4e8d8f2e21009b29f,
     type: 3}
@@ -12735,6 +12737,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 19
   movementSpeed: 330
+  canMove: 0
 --- !u!4 &1368413884
 Transform:
   m_ObjectHideFlags: 0
@@ -14745,6 +14748,173 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1713493214
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1241852012}
+    m_Modifications:
+    - target: {fileID: 679934084609309451, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 679934084609309451, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 679934085587385963, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.5734486
+      objectReference: {fileID: 0}
+    - target: {fileID: 679934085587385963, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8192416
+      objectReference: {fileID: 0}
+    - target: {fileID: 679934085587385963, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -69.982
+      objectReference: {fileID: 0}
+    - target: {fileID: 679934086314323064, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 679934086314323064, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 679934086314323064, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 679934086314323064, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 679934086314323064, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 679934086314323064, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 679934086314323064, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 679934086314323064, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 679934086314323064, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 679934086314323064, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 679934086314323064, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 679934086314323065, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_Name
+      value: Tutorial Minion
+      objectReference: {fileID: 0}
+    - target: {fileID: 679934086314323065, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098214466530484596, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3125348906444174123, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989770234959627771, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388327610676937694, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4607987323078478284, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6283735521271611318, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6287580641189357776, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6873908009296838613, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6892119887949320845, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8234972754676680001, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8887104244814624350, guid: 15a54be2449c80b4587a6e7a7247080b,
+        type: 3}
+      propertyPath: tutorialManager
+      value: 
+      objectReference: {fileID: 547869472}
+    m_RemovedComponents:
+    - {fileID: 679934085587385962, guid: 15a54be2449c80b4587a6e7a7247080b, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 15a54be2449c80b4587a6e7a7247080b, type: 3}
+--- !u!4 &1713493215 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 679934086314323064, guid: 15a54be2449c80b4587a6e7a7247080b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1713493214}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1713493216 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 679934086314323065, guid: 15a54be2449c80b4587a6e7a7247080b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1713493214}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1729186307
 GameObject:
   m_ObjectHideFlags: 0
@@ -14761,7 +14931,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1729186308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14779,7 +14949,7 @@ MonoBehaviour:
   timeInBetweenWaveMinions: 1
   timeInBetweenWaves: 42
   waveComposition: 000000000000000000000000010000000100000001000000
-  altWaveComposition: 00000000000000000000000001000000010000000100000002000000
+  altWaveComposition: 00000000
   userPlayer: {fileID: 1368413883}
   blueTarget: {fileID: 1298726476}
   redTarget: {fileID: 471795634}
@@ -14792,6 +14962,7 @@ MonoBehaviour:
     type: 3}
   minionPanel: {fileID: 12205282}
   executeBarsEnabledOnSpawn: 1
+  spawningEnabled: 0
 --- !u!4 &1729186309
 Transform:
   m_ObjectHideFlags: 0
@@ -15286,7 +15457,7 @@ MonoBehaviour:
   goalWindowText: {fileID: 2144068512}
   congratsCanvas: {fileID: 2125070591}
   congratsWindowText: {fileID: 1073520424}
-  tutorialManager: {fileID: 0}
+  tutorialManager: {fileID: 547869472}
 --- !u!4 &1777367587
 Transform:
   m_ObjectHideFlags: 0
@@ -17499,7 +17670,7 @@ GameObject:
   - component: {fileID: 2125070594}
   - component: {fileID: 2125070593}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Congrats Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

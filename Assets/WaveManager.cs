@@ -26,6 +26,8 @@ public class WaveManager : MonoBehaviour
     public MinionPanel minionPanel;
     public bool executeBarsEnabledOnSpawn = true;
 
+    public bool spawningEnabled = true;
+
     public void ToggleExecutionBarsOnSpawn()
 	{
         executeBarsEnabledOnSpawn = !executeBarsEnabledOnSpawn;
@@ -34,6 +36,10 @@ public class WaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if (!spawningEnabled)
+		{
+            return;
+		}
 		if (timeUntilNextSpawn <= 0)
 		{
             if (waveCounter % 3 == 0)
@@ -63,7 +69,7 @@ public class WaveManager : MonoBehaviour
 		}
     }
 
-	void SpawnMinionMirrored(minion.MinionTypes minionType)
+	public void SpawnMinionMirrored(minion.MinionTypes minionType)
 	{
         SpawnMinion(true, false, blueTarget, true, blueSpawn, minionType);
         SpawnMinion(false, true, redTarget, false, redSpawn, minionType);
@@ -163,7 +169,7 @@ public class WaveManager : MonoBehaviour
         **/
 	}
 
-    private void SpawnMinion(bool isBlueTeam, bool attackPlayer, GameObject goalTarget, bool isAlly, Transform spawnTransform, minion.MinionTypes minionType)
+    public void SpawnMinion(bool isBlueTeam, bool attackPlayer, GameObject goalTarget, bool isAlly, Transform spawnTransform, minion.MinionTypes minionType)
 	{
         GameObject newMinion;
         minion newMinionMinion;

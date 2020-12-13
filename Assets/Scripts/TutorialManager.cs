@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class TutorialManager : MonoBehaviour
 
 	public GameObject goalCircleGreen;
 	public GameObject goalCircleYellow;
+	public GameObject tutorialMinion;
+
+	private int currTotalDeadMinions = 0;
     
     public enum TutorialState
 	{
@@ -63,6 +67,7 @@ public class TutorialManager : MonoBehaviour
         goalUI.SetActive(false);
         controlsUI.SetActive(false);
         infoPanel.SetActive(false);
+        tutorialMinion.SetActive(false);
         reminderPanel.SetActive(false);
         goalCircleGreen.SetActive(false);
         goalCircleYellow.SetActive(false);
@@ -111,8 +116,11 @@ public class TutorialManager : MonoBehaviour
 		stateDescStrings.Add(TutorialState.TS_3_2_1_FAIL, "Aw, so close! Let’s try that again!");
 		stateReminderStrings.Add(TutorialState.TS_3_2_1_FAIL, "Wait until the enemy minion’s health is low enough to kill, then land the final blow!");
 
+		stateTitleStrings.Add(TutorialState.TS_3_2_LAST_HIT, "Last Hitting");
+		stateDescStrings.Add(TutorialState.TS_3_2_LAST_HIT, "Wait until the enemy minion’s health is low enough to kill, then land the final blow! <br>You may also damage the minion to speed things up a bit, just make sure you are ready to last hit it!");
+
 		stateTitleStrings.Add(TutorialState.TS_3_3_MULTI_LAST_HIT, "Last Hitting");
-		stateDescStrings.Add(TutorialState.TS_3_3_MULTI_LAST_HIT, "Excellent! Now let’s try something more complicated! Try to last hit 2 out of the group of 5! Good luck!");
+		stateDescStrings.Add(TutorialState.TS_3_3_MULTI_LAST_HIT, "Excellent! Now let’s try something more complicated! Try to last hit 2 out of the group of 6! Good luck!");
 		stateReminderStrings.Add(TutorialState.TS_3_3_MULTI_LAST_HIT_IN_GAME, "Hit 2 out of the group of 5!");
 
 		stateTitleStrings.Add(TutorialState.TS_3_END, "Last Hitting");
@@ -203,34 +211,48 @@ public class TutorialManager : MonoBehaviour
 				infoPanel.SetActive(false);
 				reminderPanel.SetActive(true);
 				reminderDescText.text = stateReminderStrings[state];
+				tutorialMinion.SetActive(true);
 				break;
 			case TutorialState.TS_2_2_MOVE_TO_ATK:
 				infoPanel.SetActive(true);
 				reminderPanel.SetActive(false);
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
+				tutorialMinion.SetActive(false);
 				break;
 			case TutorialState.TS_2_2_MOVE_TO_ATK_IN_GAME:
+				tutorialMinion.SetActive(true);
 				infoPanel.SetActive(false);
 				reminderPanel.SetActive(true);
 				reminderDescText.text = stateReminderStrings[state];
+				playerComponent.SetCanMove(true);
+				tutorialMinion.SetActive(true);
+				tutorialMinion.transform.Translate(new Vector3(5,0,20));
 				break;
 			case TutorialState.TS_2_3_ORB_WALKING:
+				/**
 				infoPanel.SetActive(true);
 				reminderPanel.SetActive(false);
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
+				**/
+				AdvanceState();
 				break;
 			case TutorialState.TS_2_3_ORB_WALKING_IN_GAME:
+				/**
 				infoPanel.SetActive(false);
 				reminderPanel.SetActive(true);
 				reminderDescText.text = stateReminderStrings[state];
+				**/
+				AdvanceState();
 				break;
 			case TutorialState.TS_2_END:
 				infoPanel.SetActive(true);
 				reminderPanel.SetActive(false);
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
+				tutorialMinion.SetActive(false);
+				playerComponent.SetCanMove(false);
 				break;
 			case TutorialState.TS_3_1_INTRO:
 				infoTitleText.text = stateTitleStrings[state];
@@ -312,7 +334,24 @@ public class TutorialManager : MonoBehaviour
 		}
 	}
 
-    public void CompleteCurrentGoal()
+	internal void AddMinionDeath()
+	{
+		//TODO: You were HERE when you stopped
+		currTotalDeadMinions += 1;
+		switch (state)
+		{
+			case TutorialState.TS_3_2_LAST_HIT_IN_GAME:
+				//if (currTotalDeadMinions == 1):
+				//Set state to that before failure and advance
+				break;
+			case TutorialState.TS_3_3_MULTI_LAST_HIT_IN_GAME:
+				//if (currTotalDeadMinions == 6):
+				//Set state to that before failure and advance
+				break;
+		}
+	}
+
+	public void CompleteCurrentGoal()
 	{
 		switch (state)
 		{
@@ -320,6 +359,14 @@ public class TutorialManager : MonoBehaviour
 				AdvanceState();
 				break;
 			case TutorialState.TS_1_2_MOVE_YELLOW_IN_GAME:
+				AdvanceState();
+				break;
+			case TutorialState.TS_2_1_RIGHT_CLICK_IN_GAME:
+				playerComponent.ClearAttackTarget();
+				AdvanceState();
+				break;
+			case TutorialState.TS_2_2_MOVE_TO_ATK_IN_GAME:
+				playerComponent.ClearAttackTarget();
 				AdvanceState();
 				break;
 			default:

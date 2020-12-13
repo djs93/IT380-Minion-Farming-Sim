@@ -64,6 +64,14 @@ public class projectile : MonoBehaviour
 			{
                 targetMinion.TakeDamage(damage, fromPlayer);
 			}
+			else
+			{
+                TutorialMinion targetDummy = target.GetComponent<TutorialMinion>();
+				if (targetDummy)
+				{
+                    targetDummy.TakeDamage(damage, fromPlayer);
+				}
+			}
             dying = true;
             gameObject.GetComponent<MeshRenderer>().enabled = false;
 		}
