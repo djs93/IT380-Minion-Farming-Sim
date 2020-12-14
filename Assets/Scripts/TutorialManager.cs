@@ -156,7 +156,7 @@ public class TutorialManager : MonoBehaviour
 
 		stateTitleStrings.Add(TutorialState.TS_3_3_MULTI_LAST_HIT, "Last Hitting");
 		stateDescStrings.Add(TutorialState.TS_3_3_MULTI_LAST_HIT, "Excellent! Now let’s try something more complicated! Try to last hit 2 out of the group of 6! Good luck!");
-		stateReminderStrings.Add(TutorialState.TS_3_3_MULTI_LAST_HIT_IN_GAME, "Hit 2 out of the group of 5!");
+		stateReminderStrings.Add(TutorialState.TS_3_3_MULTI_LAST_HIT_IN_GAME, "Hit 2 out of the group of 6!");
 
 		stateTitleStrings.Add(TutorialState.TS_3_3_1_FAIL, "Last Hitting");
 		stateDescStrings.Add(TutorialState.TS_3_3_1_FAIL, "Aw, so close! Let’s try that again!");
@@ -324,6 +324,7 @@ public class TutorialManager : MonoBehaviour
 				goalManager.intGoalToggle = true;
 				goalManager.intGoal = 1;
 				goalManager.intGoalProgress = 0;
+				currTotalDeadMinions = 0;
 				goalManager.goalSuffix = "minion";
 				goalManager.InitGoalWindow();
 				goalUI.SetActive(true);
@@ -358,6 +359,7 @@ public class TutorialManager : MonoBehaviour
 				goalManager.intGoalProgress = 0;
 				goalManager.goalSuffix = "minions";
 				goalManager.InitGoalWindow();
+				currTotalDeadMinions = 0;
 
 				waveManager.SpawnSingleWave(false);
 				goalUI.SetActive(true);

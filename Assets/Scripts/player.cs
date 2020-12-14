@@ -88,13 +88,11 @@ public class player : MonoBehaviour
             {
                 if (hit.collider.gameObject.tag.Equals("Enemy"))//we just shot a minion with our ray
                 {
-                    Debug.Log("Object hit: " + hit.collider.gameObject.name);
                     minion hitMinion = hit.collider.gameObject.GetComponent<minion>();
                     TutorialMinion hitTutMinion = null;
 					if (!hitMinion)
 					{
                         hitTutMinion = hit.collider.gameObject.GetComponent<TutorialMinion>();
-                        Debug.Log("IN");
                     }
                     if (hitTutMinion || (hitMinion && hitMinion.currentHealth > 0))
                     {
