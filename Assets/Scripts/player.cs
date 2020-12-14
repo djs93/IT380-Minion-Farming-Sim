@@ -195,7 +195,9 @@ public class player : MonoBehaviour
     public void SetCanMove(bool newCanMove)
 	{
         canMove = newCanMove;
-	}
+        attackMoving = false;
+        agent.isStopped = true;
+    }
 
     public void ClearAttackTarget()
 	{

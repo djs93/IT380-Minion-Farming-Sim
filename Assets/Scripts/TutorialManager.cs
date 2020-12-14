@@ -7,15 +7,27 @@ using System;
 public class TutorialManager : MonoBehaviour
 {
     public GameObject goalUI;
+	public GameObject goalMasker;
     public GameObject controlsUI;
     public GameObject championPanel;
+    public GameObject presetButton1;
+    public GameObject presetButton2;
+    public GameObject presetButton3;
     public GameObject minionPanel;
     public GameObject collapseButtonPanel;
+    public GameObject infoMaskerPanel;
+    public GameObject champMaskerPanel;
     public GameObject infoPanel;
+    public GameObject meleeMinionPicturePanel;
+    public GameObject magicMinionPicturePanel;
+    public GameObject seigeMinionPicturePanel;
     public GameObject reminderPanel;
 	public TextMeshProUGUI infoTitleText;
 	public TextMeshProUGUI infoDescText;
 	public TextMeshProUGUI reminderDescText;
+	public GameObject infoPanelNextButton;
+	public GameObject infoPanelHomeButton;
+	public GameObject infoPanelLevel01Button;
     public player playerComponent;
     public TutorialState state = TutorialState.TS_0_0_INIT;
 	public GoalManager goalManager;
@@ -63,7 +75,11 @@ public class TutorialManager : MonoBehaviour
         TS_4_END,
         TS_5_1_GOAL_COUNTER,
         TS_5_END,
-        TS_6_1_WHY_CS,
+		TS_6_0_1_TYPES,
+		TS_6_0_2_MELEE,
+		TS_6_0_3_MAGIC,
+		TS_6_0_4_SEIGE,
+		TS_6_1_WHY_CS,
         TS_6_END
     }
 
@@ -73,6 +89,9 @@ public class TutorialManager : MonoBehaviour
         goalUI.SetActive(false);
         controlsUI.SetActive(false);
         championPanel.SetActive(false);
+		presetButton1.SetActive(false);
+		presetButton2.SetActive(false);
+		presetButton3.SetActive(false);
         minionPanel.SetActive(false);
         collapseButtonPanel.SetActive(false);
         infoPanel.SetActive(false);
@@ -80,6 +99,13 @@ public class TutorialManager : MonoBehaviour
         reminderPanel.SetActive(false);
         goalCircleGreen.SetActive(false);
         goalCircleYellow.SetActive(false);
+		infoPanelHomeButton.SetActive(false);
+		infoPanelLevel01Button.SetActive(false);
+		infoMaskerPanel.SetActive(false);
+		champMaskerPanel.SetActive(false);
+		magicMinionPicturePanel.SetActive(false);
+		seigeMinionPicturePanel.SetActive(false);
+		meleeMinionPicturePanel.SetActive(false);
 		SetupStrings();
 		AdvanceState();
     }
@@ -157,7 +183,19 @@ public class TutorialManager : MonoBehaviour
 		stateDescStrings.Add(TutorialState.TS_5_1_GOAL_COUNTER, "As you’ve already seen, at the top-right there is a goal counter. This counter can track gold earned, minions killed, or any other goal in the simulator.");
 
 		stateTitleStrings.Add(TutorialState.TS_5_END, "Goals");
-		stateDescStrings.Add(TutorialState.TS_5_END, "Click Next to learn why killing minions is so important in League of Legends.");
+		stateDescStrings.Add(TutorialState.TS_5_END, "Click Next to learn about minion types in League of Legends.");
+
+		stateTitleStrings.Add(TutorialState.TS_6_0_1_TYPES, "Minion Types");
+		stateDescStrings.Add(TutorialState.TS_6_0_1_TYPES, "In League of Legends, there are three types of minions.");
+
+		stateTitleStrings.Add(TutorialState.TS_6_0_2_MELEE, "Minion Types");
+		stateDescStrings.Add(TutorialState.TS_6_0_2_MELEE, "Melee minions are close-ranged but have more health.");
+
+		stateTitleStrings.Add(TutorialState.TS_6_0_3_MAGIC, "Minion Types");
+		stateDescStrings.Add(TutorialState.TS_6_0_3_MAGIC, "Magic minions are long-ranged and deal more damage, but have less health.");
+
+		stateTitleStrings.Add(TutorialState.TS_6_0_4_SEIGE, "Minion Types");
+		stateDescStrings.Add(TutorialState.TS_6_0_4_SEIGE, "Seige minions are super strong ranged minions. <br>They have more health and deal more damage than either other type of minion. <br>There are also super minions, which are even stronger melee minions, however, they are not in this simulator.");
 
 		stateTitleStrings.Add(TutorialState.TS_6_1_WHY_CS, "Why Last Hit?");
 		stateDescStrings.Add(TutorialState.TS_6_1_WHY_CS, "In League of Legends, you have items you can buy with gold. As you kill minions, you gain gold. <br>The more accurate you are with last-hitting minions, the more gold you will have. The more gold you have, the more items you can buy, and the more items you can buy, the more powerful you will be against your opponents. <br>This is why last-hitting minions (also called “CS-ing”) is so important, and why this simulator exists.");
@@ -346,38 +384,84 @@ public class TutorialManager : MonoBehaviour
 			case TutorialState.TS_4_1_CHAMP_UI:
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
+				controlsUI.SetActive(true);
+				championPanel.SetActive(true);
+				infoMaskerPanel.SetActive(true);
+				championPanel.transform.SetAsLastSibling();
 				break;
 			case TutorialState.TS_4_2_CHAMP_PRESETS:
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
+				presetButton1.SetActive(true);
+				presetButton2.SetActive(true);
+				presetButton3.SetActive(true);
+				champMaskerPanel.SetActive(true);
 				break;
 			case TutorialState.TS_4_3_MINION_UI:
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
+				minionPanel.SetActive(true);
+				champMaskerPanel.SetActive(false);
+				championPanel.transform.SetSiblingIndex(championPanel.transform.GetSiblingIndex() - 1);
+				minionPanel.transform.SetAsLastSibling();
 				break;
 			case TutorialState.TS_4_4_COLLAPSE:
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
+				collapseButtonPanel.SetActive(true);
+				minionPanel.transform.SetSiblingIndex(minionPanel.transform.GetSiblingIndex() - 1);
+				collapseButtonPanel.transform.SetAsLastSibling();
 				break;
 			case TutorialState.TS_4_END:
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
+				infoMaskerPanel.transform.SetAsFirstSibling();
 				break;
 			case TutorialState.TS_5_1_GOAL_COUNTER:
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
+				goalUI.SetActive(true);
+				infoMaskerPanel.transform.SetAsLastSibling();
 				break;
 			case TutorialState.TS_5_END:
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
 				break;
+			case TutorialState.TS_6_0_1_TYPES:
+				infoTitleText.text = stateTitleStrings[state];
+				infoDescText.text = stateDescStrings[state];
+				goalMasker.SetActive(true);
+				break;
+			case TutorialState.TS_6_0_2_MELEE:
+				infoTitleText.text = stateTitleStrings[state];
+				infoDescText.text = stateDescStrings[state];
+				meleeMinionPicturePanel.SetActive(true);
+				break;
+			case TutorialState.TS_6_0_3_MAGIC:
+				infoTitleText.text = stateTitleStrings[state];
+				infoDescText.text = stateDescStrings[state];
+				meleeMinionPicturePanel.SetActive(false);
+				magicMinionPicturePanel.SetActive(true);
+				break;
+			case TutorialState.TS_6_0_4_SEIGE:
+				infoTitleText.text = stateTitleStrings[state];
+				infoDescText.text = stateDescStrings[state];
+				magicMinionPicturePanel.SetActive(false);
+				seigeMinionPicturePanel.SetActive(true);
+				break;
 			case TutorialState.TS_6_1_WHY_CS:
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
+				goalUI.SetActive(false);
+				controlsUI.SetActive(false);
+				seigeMinionPicturePanel.SetActive(false);
 				break;
 			case TutorialState.TS_6_END:
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
+				infoPanelNextButton.SetActive(false);
+				infoPanelHomeButton.SetActive(true);
+				infoPanelLevel01Button.SetActive(true);
 				break;
 			default:
 				Debug.LogWarning("Invalid State!");
