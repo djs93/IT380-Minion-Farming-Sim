@@ -16,6 +16,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject minionPanel;
     public GameObject collapseButtonPanel;
     public GameObject infoMaskerPanel;
+    public GameObject uiMaskerPanel;
     public GameObject champMaskerPanel;
     public GameObject infoPanel;
     public GameObject meleeMinionPicturePanel;
@@ -102,6 +103,7 @@ public class TutorialManager : MonoBehaviour
 		infoPanelHomeButton.SetActive(false);
 		infoPanelLevel01Button.SetActive(false);
 		infoMaskerPanel.SetActive(false);
+		uiMaskerPanel.SetActive(false);
 		champMaskerPanel.SetActive(false);
 		magicMinionPicturePanel.SetActive(false);
 		seigeMinionPicturePanel.SetActive(false);
@@ -212,6 +214,7 @@ public class TutorialManager : MonoBehaviour
 		{
 			case TutorialState.TS_0_1_GREETING:
 				infoPanel.SetActive(true);
+				uiMaskerPanel.SetActive(true);
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
 				break;
@@ -225,6 +228,7 @@ public class TutorialManager : MonoBehaviour
 				break;
 			case TutorialState.TS_1_1_MOVE_GREEN_IN_GAME:
 				infoPanel.SetActive(false);
+				uiMaskerPanel.SetActive(false);
 				reminderPanel.SetActive(true);
 				reminderDescText.text = stateReminderStrings[state];
 				goalCircleGreen.SetActive(true);
@@ -232,6 +236,7 @@ public class TutorialManager : MonoBehaviour
 				break;
 			case TutorialState.TS_1_2_MOVE_YELLOW:
 				infoPanel.SetActive(true);
+				uiMaskerPanel.SetActive(true);
 				reminderPanel.SetActive(false);
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
@@ -240,6 +245,7 @@ public class TutorialManager : MonoBehaviour
 				break;
 			case TutorialState.TS_1_2_MOVE_YELLOW_IN_GAME:
 				infoPanel.SetActive(false);
+				uiMaskerPanel.SetActive(false);
 				reminderPanel.SetActive(true);
 				reminderDescText.text = stateReminderStrings[state];
 				goalCircleYellow.SetActive(true);
@@ -247,6 +253,7 @@ public class TutorialManager : MonoBehaviour
 				break;
 			case TutorialState.TS_1_END:
 				infoPanel.SetActive(true);
+				uiMaskerPanel.SetActive(true);
 				reminderPanel.SetActive(false);
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
@@ -259,12 +266,14 @@ public class TutorialManager : MonoBehaviour
 				break;
 			case TutorialState.TS_2_1_RIGHT_CLICK_IN_GAME:
 				infoPanel.SetActive(false);
+				uiMaskerPanel.SetActive(false);
 				reminderPanel.SetActive(true);
 				reminderDescText.text = stateReminderStrings[state];
 				tutorialMinion.SetActive(true);
 				break;
 			case TutorialState.TS_2_2_MOVE_TO_ATK:
 				infoPanel.SetActive(true);
+				uiMaskerPanel.SetActive(true);
 				reminderPanel.SetActive(false);
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
@@ -273,6 +282,7 @@ public class TutorialManager : MonoBehaviour
 			case TutorialState.TS_2_2_MOVE_TO_ATK_IN_GAME:
 				tutorialMinion.SetActive(true);
 				infoPanel.SetActive(false);
+				uiMaskerPanel.SetActive(false);
 				reminderPanel.SetActive(true);
 				reminderDescText.text = stateReminderStrings[state];
 				playerComponent.SetCanMove(true);
@@ -298,6 +308,7 @@ public class TutorialManager : MonoBehaviour
 				break;
 			case TutorialState.TS_2_END:
 				infoPanel.SetActive(true);
+				uiMaskerPanel.SetActive(true);
 				reminderPanel.SetActive(false);
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
@@ -310,12 +321,14 @@ public class TutorialManager : MonoBehaviour
 				break;
 			case TutorialState.TS_3_2_LAST_HIT:
 				infoPanel.SetActive(true);
+				uiMaskerPanel.SetActive(true);
 				reminderPanel.SetActive(false);
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
 				break;
 			case TutorialState.TS_3_2_LAST_HIT_IN_GAME:
 				infoPanel.SetActive(false);
+				uiMaskerPanel.SetActive(false);
 				reminderPanel.SetActive(true);
 				reminderDescText.text = stateReminderStrings[state];
 				playerComponent.SetCanMove(true);
@@ -333,6 +346,7 @@ public class TutorialManager : MonoBehaviour
 				break;
 			case TutorialState.TS_3_2_1_FAIL:
 				infoPanel.SetActive(true);
+				uiMaskerPanel.SetActive(true);
 				reminderPanel.SetActive(false);
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
@@ -343,6 +357,7 @@ public class TutorialManager : MonoBehaviour
 				break;
 			case TutorialState.TS_3_3_MULTI_LAST_HIT:
 				infoPanel.SetActive(true);
+				uiMaskerPanel.SetActive(true);
 				reminderPanel.SetActive(false);
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
@@ -352,6 +367,7 @@ public class TutorialManager : MonoBehaviour
 				break;
 			case TutorialState.TS_3_3_MULTI_LAST_HIT_IN_GAME:
 				infoPanel.SetActive(false);
+				uiMaskerPanel.SetActive(false);
 				reminderPanel.SetActive(true);
 				reminderDescText.text = stateReminderStrings[state];
 
@@ -367,6 +383,7 @@ public class TutorialManager : MonoBehaviour
 				break;
 			case TutorialState.TS_3_3_1_FAIL:
 				infoPanel.SetActive(true);
+				uiMaskerPanel.SetActive(true);
 				reminderPanel.SetActive(false);
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
@@ -376,6 +393,7 @@ public class TutorialManager : MonoBehaviour
 				break;
 			case TutorialState.TS_3_END:
 				infoPanel.SetActive(true);
+				uiMaskerPanel.SetActive(true);
 				reminderPanel.SetActive(false);
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
@@ -384,6 +402,7 @@ public class TutorialManager : MonoBehaviour
 				playerComponent.SetCanMove(false);
 				break;
 			case TutorialState.TS_4_1_CHAMP_UI:
+				uiMaskerPanel.SetActive(false);
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
 				controlsUI.SetActive(true);
@@ -433,6 +452,8 @@ public class TutorialManager : MonoBehaviour
 				infoTitleText.text = stateTitleStrings[state];
 				infoDescText.text = stateDescStrings[state];
 				goalMasker.SetActive(true);
+				uiMaskerPanel.SetActive(true);
+				infoMaskerPanel.SetActive(false);
 				break;
 			case TutorialState.TS_6_0_2_MELEE:
 				infoTitleText.text = stateTitleStrings[state];

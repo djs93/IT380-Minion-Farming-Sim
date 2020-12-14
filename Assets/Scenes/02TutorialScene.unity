@@ -3077,6 +3077,7 @@ MonoBehaviour:
   minionPanel: {fileID: 12205281}
   collapseButtonPanel: {fileID: 1558757262}
   infoMaskerPanel: {fileID: 1045082538}
+  uiMaskerPanel: {fileID: 1872668208}
   champMaskerPanel: {fileID: 2073488800}
   infoPanel: {fileID: 1032325217}
   meleeMinionPicturePanel: {fileID: 129650065}
